@@ -1,0 +1,20 @@
+// src/styles/variables.less (new file)
+@screen-xs: 480px;
+@screen-sm: 576px;
+@screen-md: 768px;
+@screen-lg: 992px;
+@screen-xl: 1200px;
+@screen-xxl: 1600px;
+
+// Responsive mixins
+.responsive-mixin(@rules) {
+  @media screen and (max-width: @screen-md) {
+    @rules();
+  }
+}
+
+.tablet-mixin(@rules) {
+  @media screen and (min-width: @screen-sm) and (max-width: @screen-lg) {
+    @rules();
+  }
+}
