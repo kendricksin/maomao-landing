@@ -2,58 +2,57 @@
 @content1: content1;
 
 .@{content1}-wrapper {
-  min-height: 360px; /* Changed from fixed height */
-  padding: 64px 0; /* Added padding */
-  display: flex; /* Added for flexible layout */
+  min-height: 360px;
+  padding: 64px 0;
+  display: flex;
   align-items: center;
-  
+
   .@{content1} {
     width: 100%;
+    display: flex;
+    flex-direction: row;
     padding: 0 24px;
-    
+    gap: 48px; // Optional: adds spacing between image and text
+
     &-img {
-      transform-origin: top;
-      padding: 0 32px;
+      flex: 0 0 250px;
       display: flex;
       align-items: center;
       justify-content: center;
-      
+      padding: 0 16px;
+
       span {
         display: block;
-        width: 100%; /* Changed from fixed width */
-        max-width: 250px; /* Added max-width for control */
+        width: 100%;
+        max-width: 250px;
         img {
           display: block;
           width: 100%;
-          height: auto; /* Ensures proper scaling */
+          height: auto;
         }
       }
     }
-    
+
     &-text {
-      padding: 0 32px;
+      flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      
-      .@{content1}-content,
+      padding: 0 16px;
+
       .@{content1}-title {
-        position: relative !important;
-      }
-      
-      .@{content1}-title {
-        .responsive-heading(32px); /* Using mixin instead of fixed size */
+        .responsive-heading(32px);
         font-weight: normal;
         color: #404040;
-        margin-top: 2rem; /* Relative unit instead of fixed 120px */
-        
+        margin-top: 2rem;
+
         @media screen and (min-width: @screen-md) {
           margin-top: 3rem;
         }
       }
-      
-      .content {
-        margin-top: 1.25rem; /* Relative unit instead of fixed 20px */
+
+      .@{content1}-content {
+        margin-top: 1.25rem;
       }
     }
   }

@@ -1,3 +1,4 @@
+// Define custom variables for our theme
 @line-color: #e9e9e9;
 @shadow-color: rgba(0, 0, 0, 0.15);
 
@@ -14,23 +15,7 @@
 
 @animate-duration: .45s;
 
-/* Detail page image and box styles */
-.page-shadow() {
-  box-shadow: 0 5px 8px @shadow-color;
-}
-
-.page-pro() {
-  border-radius: 6px;
-  border: 1px solid @line-color;
-  transform: translateY(0);
-  transition: transform .3s ease-out, box-shadow .3s ease-out;
-  &:hover {
-    .page-shadow();
-    transform: translateY(-5px);
-  }
-}
-
-// Apply purple background for Feature2 section
+// Feature section background
 #Feature2_0 {
   background-color: #450a53;
   
@@ -40,5 +25,22 @@
   
   .ant-row > .ant-col > .content2-content {
     color: #f1f1f1;
+  }
+}
+
+// Box shadow effect
+.page-shadow() {
+  box-shadow: 0 5px 8px @shadow-color;
+}
+
+// Card hover effect
+.page-pro() {
+  border-radius: 6px;
+  border: 1px solid @line-color;
+  transform: translateY(0);
+  transition: transform .3s ease-out, box-shadow .3s ease-out;
+  &:hover {
+    .page-shadow();
+    transform: translateY(-5px);
   }
 }

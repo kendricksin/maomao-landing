@@ -1,141 +1,95 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TweenOne from 'rc-tween-one';
 import { Menu } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
-import { getChildrenToRender } from './utils';
 
-const { Item, SubMenu } = Menu;
+const { Item } = Menu;
 
 const Nav0 = (props) => {
-  const [phoneOpen, setPhoneOpen] = useState(undefined);
+  const [phoneOpen, setPhoneOpen] = useState(false);
   const location = useLocation();
+  const [selectedKeys, setSelectedKeys] = useState(['home']);
+
+  // Update selected keys when location changes
+  useEffect(() => {
+    const pathname = location.pathname;
+    if (pathname === '/') setSelectedKeys(['home']);
+    else if (pathname === '/contact') setSelectedKeys(['contact']);
+    else if (pathname === '/faq') setSelectedKeys(['faq']);
+    else setSelectedKeys(['home']);
+  }, [location]);
 
   const phoneClick = () => {
     setPhoneOpen(!phoneOpen);
   };
-
-  const getSelectedKeys = () => {
-    // Get current path
-    const pathname = location.pathname;
-    
-    if (pathname === '/') return ['home'];
-    if (pathname === '/contact') return ['contact'];
-    if (pathname === '/faq') return ['faq'];
-    
-    return ['home'];
-  };
-
-  const { dataSource, isMobile, ...otherProps } = props;
-  const navData = dataSource.Menu.children;
-
-  const navChildren = navData.map((item) => {
-    const { children: a, subItem, ...itemProps } = item;
-    if (subItem) {
-      return (
-        <SubMenu
-          key={item.name}
-          {...itemProps}
-          title={
-            <div
-              {...a}
-              className={`header0-item-block ${a.className}`.trim()}
-            >
-              {a.children.map(getChildrenToRender)}
-            </div>
-          }
-          popupClassName="header0-item-child"
-        >
-          {subItem.map(($item, ii) => {
-            const { children: childItem } = $item;
-            const child = childItem.href ? (
-              <Link to={childItem.href} {...childItem}>
-                {childItem.children.map(getChildrenToRender)}
-              </Link>
-            ) : (
-              <div {...childItem}>
-                {childItem.children.map(getChildrenToRender)}
-              </div>
-            );
-            return (
-              <Item key={$item.name || ii.toString()} {...$item}>
-                {child}
-              </Item>
-            );
-          })}
-        </SubMenu>
-      );
-    }
-    return (
-      <Item key={item.name} {...itemProps}>
-        <Link to={a.href} {...a} className={`header0-item-block ${a.className}`.trim()}>
-          {a.children.map(getChildrenToRender)}
-        </Link>
-      </Item>
-    );
-  });
   
-  const moment = phoneOpen === undefined ? 300 : null;
+  const { dataSource, isMobile, ...otherProps } = props;
+
   return (
-    <TweenOne
-      component="header"
-      animation={{ opacity: 0, type: 'from' }}
-      {...dataSource.wrapper}
-      {...otherProps}
-    >
-      <div
-        {...dataSource.page}
-        className={`${dataSource.page.className}${phoneOpen ? ' open' : ''}`}
-      >
-        <TweenOne
-          animation={{ x: -30, type: 'from', ease: 'easeOutQuad' }}
-          {...dataSource.logo}
-        >
+    <header className="header0 home-page-wrapper" {...otherProps}>
+      <div className={`home-page${phoneOpen ? ' open' : ''}`}>
+        {/* Logo */}
+        <div className="header0-logo">
           <Link to="/">
-            <img width="100%" src={dataSource.logo.children} alt="img" />
+            <img width="100%" src={dataSource.logo.children} alt="logo" />
           </Link>
-        </TweenOne>
+        </div>
+        
+        {/* Mobile menu hamburger icon */}
         {isMobile && (
           <div
-            {...dataSource.mobileMenu}
-            onClick={() => {
-              phoneClick();
-            }}
+            className="header0-mobile-menu"
+            onClick={phoneClick}
           >
             <em />
             <em />
             <em />
           </div>
         )}
-        <TweenOne
-          {...dataSource.Menu}
-          animation={
-            isMobile
-              ? {
-                  height: 0,
-                  duration: 300,
-                  onComplete: (e) => {
-                    if (phoneOpen) {
-                      e.target.style.height = 'auto';
-                    }
-                  },
-                  ease: 'easeInOutQuad',
-                }
-              : null
-          }
-          moment={moment}
-          reverse={!!phoneOpen}
-        >
-          <Menu
-            mode={isMobile ? 'inline' : 'horizontal'}
-            defaultSelectedKeys={getSelectedKeys()}
-            selectedKeys={getSelectedKeys()}
-            theme="dark"
-          >
-            {navChildren}
-          </Menu>
-        </TweenOne>
+        
+        {/* Desktop Navigation Items */}
+        {!isMobile && (
+          <div className="header0-menu">
+            <Menu
+              mode="horizontal"
+              selectedKeys={selectedKeys}
+              theme="dark"
+            >
+              <Item key="home">
+                <Link to="/">Home</Link>
+              </Item>
+              <Item key="contact">
+                <Link to="/contact">Contact Us</Link>
+              </Item>
+              <Item key="faq">
+                <Link to="/faq">FAQ</Link>
+              </Item>
+            </Menu>
+          </div>
+        )}
+        
+        {/* Mobile Navigation Items */}
+        {isMobile && (
+          <div className={`header0-menu${phoneOpen ? ' open' : ''}`}>
+            <Menu
+              mode="inline"
+              selectedKeys={selectedKeys}
+              theme="dark"
+            >
+              <Item key="home">
+                <Link to="/">Home</Link>
+              </Item>
+              <Item key="contact">
+                <Link to="/contact">Contact Us</Link>
+              </Item>
+              <Item key="faq">
+                <Link to="/faq">FAQ</Link>
+              </Item>
+            </Menu>
+          </div>
+        )}
       </div>
-    </TweenOne>
+    </header>
   );
 };
 
