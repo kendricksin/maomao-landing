@@ -1,7 +1,13 @@
-/* Import all style files here */
+/* Base files */
+@import './variables.less';
+@import './typography.less';
 @import './common.less';
 @import './custom.less';
+
+/* Layout files */
 @import './content.less';
+
+/* Component styles */
 @import './nav0.less';
 @import './content11.less';
 @import './content1.less';
@@ -10,3 +16,66 @@
 @import './feature0.less';
 @import './pricing0.less';
 @import './footer2.less';
+@import './edit.less';
+
+/* Responsive utilities */
+.hide-on-mobile {
+  @media screen and (max-width: @screen-md) {
+    display: none !important;
+  }
+}
+
+.hide-on-desktop {
+  @media screen and (min-width: @screen-md) {
+    display: none !important;
+  }
+}
+
+.text-center-mobile {
+  @media screen and (max-width: @screen-md) {
+    text-align: center !important;
+  }
+}
+
+/* Add viewport indicator for development only */
+.viewport-indicator {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  z-index: 9999;
+  display: none;
+}
+
+/* Only show in development */
+.development .viewport-indicator {
+  display: block;
+}
+
+/* Responsive spacing utilities */
+.responsive-padding {
+  padding: 1rem;
+  
+  @media screen and (min-width: @screen-md) {
+    padding: 2rem;
+  }
+  
+  @media screen and (min-width: @screen-lg) {
+    padding: 3rem;
+  }
+}
+
+.responsive-margin {
+  margin: 1rem;
+  
+  @media screen and (min-width: @screen-md) {
+    margin: 2rem;
+  }
+  
+  @media screen and (min-width: @screen-lg) {
+    margin: 3rem;
+  }
+}

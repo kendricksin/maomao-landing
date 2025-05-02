@@ -9,22 +9,36 @@ function Feature2(props) {
   const { dataSource, isMobile } = tagProps;
   delete tagProps.dataSource;
   delete tagProps.isMobile;
+
+  // Enhanced animation configuration for different screen sizes
+  const prefersReducedMotion = 
+    typeof window !== 'undefined' && 
+    window.matchMedia && 
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Mobile animation values
+  const mobileTweenValues = {
+    y: '+=20', // Smaller values on mobile
+    opacity: 0,
+    type: 'from',
+    ease: 'easeOutQuad',
+    duration: 450, // Slightly faster on mobile
+  };
+
+  // Desktop animation values
+  const desktopTweenValues = {
+    x: '+=30',
+    opacity: 0,
+    type: 'from',
+    ease: 'easeOutQuad',
+    duration: 600,
+  };
+
   const animType = {
     queue: isMobile ? 'bottom' : 'left',
-    one: isMobile
-      ? {
-          scaleY: '+=0.3',
-          opacity: 0,
-          type: 'from',
-          ease: 'easeOutQuad',
-        }
-      : {
-          x: '+=30',
-          opacity: 0,
-          type: 'from',
-          ease: 'easeOutQuad',
-        },
+    one: prefersReducedMotion ? null : (isMobile ? mobileTweenValues : desktopTweenValues),
   };
+
   const img = (
     <TweenOne
       key="img"
@@ -33,8 +47,12 @@ function Feature2(props) {
       {...dataSource.imgWrapper}
       component={Col}
       componentProps={{
-        md: dataSource.imgWrapper.md,
-        xs: dataSource.imgWrapper.xs,
+        xs: 24,
+        sm: 24,
+        md: 12,
+        lg: 10,
+        xl: 10,
+        xxl: 10,
       }}
     >
       <span {...dataSource.img}>
@@ -42,6 +60,7 @@ function Feature2(props) {
       </span>
     </TweenOne>
   );
+
   return (
     <div {...tagProps} {...dataSource.wrapper}>
       <OverPack {...dataSource.OverPack} component={Row}>
@@ -54,8 +73,12 @@ function Feature2(props) {
           {...dataSource.textWrapper}
           component={Col}
           componentProps={{
-            md: dataSource.textWrapper.md,
-            xs: dataSource.textWrapper.xs,
+            xs: 24,
+            sm: 24,
+            md: 12,
+            lg: 14,
+            xl: 14,
+            xxl: 14,
           }}
         >
           <h2 key="h1" {...dataSource.title}>

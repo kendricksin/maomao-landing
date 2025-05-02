@@ -1,0 +1,125 @@
+@import './variables.less';
+
+// Responsive typography system
+
+.h1, h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+  font-weight: 600;
+  
+  @media (min-width: @screen-md) {
+    font-size: 2.5rem;
+  }
+  
+  @media (min-width: @screen-lg) {
+    font-size: 3rem;
+  }
+}
+
+.h2, h2 {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  font-weight: 500;
+  
+  @media (min-width: @screen-md) {
+    font-size: 1.75rem;
+  }
+  
+  @media (min-width: @screen-lg) {
+    font-size: 2rem;
+  }
+}
+
+.h3, h3 {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 500;
+  
+  @media (min-width: @screen-md) {
+    font-size: 1.5rem;
+  }
+}
+
+.title-large {
+  font-size: 1.75rem;
+  line-height: 1.3;
+  
+  @media (min-width: @screen-md) {
+    font-size: 2rem;
+  }
+  
+  @media (min-width: @screen-lg) {
+    font-size: 2.5rem;
+  }
+}
+
+.title-medium {
+  font-size: 1.5rem;
+  line-height: 1.35;
+  
+  @media (min-width: @screen-md) {
+    font-size: 1.75rem;
+  }
+  
+  @media (min-width: @screen-lg) {
+    font-size: 2rem;
+  }
+}
+
+.title-small {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  
+  @media (min-width: @screen-md) {
+    font-size: 1.5rem;
+  }
+}
+
+.body-large {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  
+  @media (min-width: @screen-md) {
+    font-size: 1.25rem;
+  }
+}
+
+.body-medium {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.body-small {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.caption {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+// Text overflow handling
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-wrap {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+// In a fixed box or container, text that might overflow
+.fixed-height-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; // Default to 3 lines
+  line-clamp: 3;
+}
+
+// Apply these classes to your components as needed

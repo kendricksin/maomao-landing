@@ -1,21 +1,23 @@
+@import './variables.less';
 @content11: content11;
+
 .@{content11}-wrapper {
-  min-height: 300px;
-  padding: 96px 0 64px;
-  display: flex;
+  min-height: 480px; /* Changed from fixed height */
+  display: flex; /* Added for flexible layout */
   flex-direction: column;
   justify-content: center;
   background: url("https://gw.alipayobjects.com/zos/rmsportal/ZsWYzLOItgeaWDSsXdZd.svg") no-repeat bottom;
   background-size: cover;
-  background-size: 100%;
   margin: 0 auto;
   overflow: hidden;
-  padding-top: 96px;
+  padding: 96px 24px 64px; /* Changed to padding instead of padding-top only */
+  
   &.home-page-wrapper {
     .title-wrapper {
-      margin-bottom: 32px;
+      margin-bottom: 2rem; /* Changed from fixed margin */
     }
   }
+  
   .button {
     box-shadow: 0 8px 16px #0554b7;
     background: linear-gradient(to right, #05cbff, #1e5aff) !important;
@@ -25,26 +27,49 @@
     border: 0;
     border-radius: 21px;
     color: #fff;
-    width: 128px;
-    padding: 0 15px;
+    width: auto; /* Changed from fixed width */
+    min-width: 128px; /* Added min-width instead */
+    max-width: 100%; /* Ensure it doesn't overflow */
+    padding: 0 1.5rem; /* Changed to relative units */
     display: inline-block;
     transition: transform .3s, box-shadow .3s;
+    
     &:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 20px #0554b7;
     }
+    
     &:active {
       transform: translateY(4px);
       box-shadow: 0 4px 8px #0554b7;
     }
   }
+  
   .title-content {
-    line-height: 32px;
+    line-height: 1.5; /* Changed from fixed line height */
+    max-width: 100%; /* Ensure text doesn't overflow */
   }
 }
 
-@media screen and (max-width: 767px) {
+/* Mobile styles */
+@media screen and (max-width: @screen-md) {
   .@{content11}-wrapper {
-    padding-bottom: 0;
+    padding: 64px 16px 48px; /* Reduced padding for mobile */
+    min-height: 360px; /* Shorter minimum height for mobile */
+    
+    .title-content {
+      padding: 0 1rem; /* Added padding for better readability */
+    }
+    
+    .button {
+      margin-top: 1.5rem; /* Extra space above button on mobile */
+    }
+  }
+}
+
+/* Tablet styles */
+@media screen and (min-width: @screen-md) and (max-width: @screen-lg) {
+  .@{content11}-wrapper {
+    padding: 80px 24px 56px;
   }
 }
