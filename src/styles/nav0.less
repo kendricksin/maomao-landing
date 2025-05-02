@@ -1,28 +1,27 @@
 @header0: header0;
-@import './custom.less';
 
 .@{header0} {
   background: @template-nav-bg-color;
   width: 100%;
-  z-index: 100;
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  box-shadow: 0 5px 8px fade(#000, 15);
   position: relative;
   top: 0;
 
   .home-page {
     padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
+    display: flex; /* Use flexbox for better layout control */
+    justify-content: space-between; /* Space between logo and menu */
+    align-items: center; /* Center items vertically */
   }
 
   &-logo {
-    display: inline-block;
+    display: block; /* Changed from inline-block */
     position: relative;
-    width: 120px;
+    width: 150px;
     line-height: 64px;
+    margin-right: auto; /* Push logo to the left */
+    text-align: left; /* Ensure logo content is left-aligned */
 
     & img {
       vertical-align: middle;
@@ -35,43 +34,106 @@
   }
 
   &-menu {
-    display: inline-block;
-    float: right;
-
+    display: block !important; /* Ensure it's displayed */
+    visibility: visible !important; /* Make sure it's visible */
+    opacity: 1 !important; /* Ensure it's not transparent */
+    height: auto !important; /* Ensure it has height */
+    width: auto !important; /* FIX: Ensure it has appropriate width */
+    min-width: 300px !important; /* FIX: Give it a minimum width */
+    pointer-events: auto !important; /* Make it interactive */
+    z-index: 100; /* Ensure it's above other elements */
+    flex-shrink: 0; /* FIX: Prevent shrinking */
+    
     .ant-menu {
       line-height: 62px;
       height: 64px;
-      border-bottom: none;
-      background: transparent;
+      border-bottom: none !important;
+      background-color: transparent;
+      width: 100%; /* FIX: Ensure menu has full width */
+      min-width: 300px; /* FIX: Give it a minimum width */
 
       a {
         display: block;
-        color: @template-text-color-light;
-        font-size: 16px;
-        padding: 0 10px;
-      }
-      
-      .ant-menu-item {
-        padding: 0 15px;
-        text-align: center;
+        color: #fff;
+        font-size: 14px;
+        white-space: nowrap; /* FIX: Prevent text wrapping */
         
         &:hover {
-          color: #fff;
-          border-bottom: 2px solid #fff;
+          color: #1890ff;
         }
-        
-        &-selected {
-          border-bottom: 2px solid #fff;
-        }
+      }
+    }
+  }
+
+  &-item {
+    &-block {
+      padding: 0 16px; /* Increased padding for better spacing */
+
+      >* {
+        display: inline-block;
+      }
+    }
+  }
+
+  /* Fix for menu items to ensure they have width */
+  .ant-menu-item {
+    min-width: 80px;
+    text-align: center;
+  }
+
+  /* Fix for the overall menu container */
+  .ant-menu-horizontal {
+    display: flex;
+    width: auto !important;
+    min-width: 300px;
+  }
+
+  &-item,
+  &-item-child,
+  &-menu {
+    .ant-menu-sub .ant-menu-item,
+    .ant-menu-inline .ant-menu-item {
+      height: auto;
+      line-height: 1.5;
+    }
+
+    .item {
+      &-sub-item {
+        display: block;
+        padding: 8px 24px;
+      }
+
+      &-image {
+        float: left;
+        margin-right: 16px;
+        margin-top: 4px;
+        position: relative;
+        z-index: 1;
+      }
+
+      &-title {
+        font-size: 14px;
+        color: #fff;
+        margin-left: 46px;
+      }
+
+      &-content {
+        font-size: 12px;
+        color: fade(#fff, 75);
+        margin-left: 46px;
       }
     }
   }
 }
 
-/* Mobile Styles */
 @media screen and (max-width: 767px) {
   .@{header0} {
+    .home-page {
+      flex-wrap: wrap; /* Allow items to wrap on mobile */
+    }
+
     &-logo {
+      margin: 0; /* Reset margin on mobile */
       z-index: 101;
     }
 
@@ -80,37 +142,31 @@
     }
 
     &-menu {
+      display: none !important; /* Initially hide on mobile */
       height: 0;
-      width: 100%;
-      overflow: hidden;
-      position: absolute;
-      top: 64px;
-      left: 0;
-      right: 0;
-      background: @template-nav-bg-color;
-      box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
-      transition: height 0.3s ease-in-out;
-      float: none;
-      display: block;
+      float: inherit;
+      position: relative;
+      left: -24px;
+      width: ~"calc(100% + 48px)" !important; /* Override width on mobile */
+      min-width: 100% !important; /* Override min-width on mobile */
       
-      &.open {
-        height: auto;
+      .open & {
+        display: block !important; /* Show when open */
+        opacity: 1 !important;
       }
 
-      .ant-menu {
-        width: 100%;
-        height: auto;
-        line-height: 50px;
-        
-        .ant-menu-item {
-          display: block;
-          width: 100%;
-          text-align: left;
-          padding: 0 24px;
-          
-          a {
-            padding: 0;
-          }
+      & li {
+        padding: 0 24px;
+        text-align: left;
+
+        &.ant-menu-submenu {
+          padding: 0;
+        }
+      }
+      
+      .item {
+        &-sub-item {
+          padding: 8px 0;
         }
       }
     }
@@ -136,6 +192,49 @@
       :first-child {
         margin-top: 0;
       }
+    }
+
+    .ant-menu {
+      height: auto;
+      overflow: hidden;
+      width: 100% !important; /* Force full width on mobile */
+
+      .ant-menu-item-selected {
+        border: none;
+      }
+    }
+
+    & .open {
+      height: auto;
+
+      .@{header0}-mobile-menu {
+        em {
+          &:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+          }
+
+          &:nth-child(2) {
+            opacity: 0;
+          }
+
+          &:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+          }
+        }
+      }
+
+      >.@{header0}-menu {
+        opacity: 1;
+        height: auto;
+        display: block !important;
+        background-color: @template-nav-bg-color;
+        padding: 10px 0;
+      }
+    }
+    
+    &-item-block {
+      height: 40px;
+      line-height: 40px;
     }
   }
 }
