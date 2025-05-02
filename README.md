@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# MaoMao Social Platform - Vite Migration
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a migration of the MaoMao Social Platform landing page from Create React App (CRA) to Vite to solve dependency issues and improve development experience.
 
-## Available Scripts
+## Quick Start
 
-In the project directory, you can run:
+```bash
+# Install dependencies
+npm install
 
-### `npm start`
+# Start development server
+npm run dev
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Project Structure
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+maomao-landing-vite/
+├── public/
+│   └── favicon.ico
+├── src/
+│   ├── components/
+│   │   └── Home/
+│   │       ├── data.source.js (contains all section data)
+│   │       ├── Feature0.jsx (feature grid section)
+│   │       ├── Footer2.jsx (footer component)
+│   │       ├── Nav0.jsx (navigation component)
+│   │       └── utils.js (utility functions)
+│   ├── pages/
+│   │   ├── Contact.jsx (contact page)
+│   │   ├── FAQ.jsx (FAQ and terms page)
+│   │   └── Home.jsx (home page)
+│   ├── styles/
+│   │   ├── common.less (common styles)
+│   │   ├── custom.less (variables and overrides)
+│   │   ├── footer2.less (footer styles)
+│   │   ├── nav0.less (navigation styles)
+│   │   └── index.less (imports all styles)
+│   ├── App.jsx (main app with routing)
+│   ├── main.jsx (entry point)
+│   └── index.css (global CSS)
+├── index.html
+├── package.json
+├── vite.config.js
+└── README.md
+```
 
-### `npm test`
+## Migration Progress
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [x] Basic project setup with Vite
+- [x] Core dependencies installed
+- [x] Routing configured
+- [x] Navigation component migrated
+- [x] Footer component migrated
+- [x] Contact page migrated
+- [x] FAQ page migrated
+- [x] Feature0 component migrated
+- [ ] Content11 component (needs migration)
+- [ ] Content1 component (needs migration)
+- [ ] Feature1 component (needs migration)
+- [ ] Feature2 component (needs migration)
+- [ ] Pricing0 component (needs migration)
+- [ ] Style files (partially migrated)
 
-### `npm run build`
+## Component Migration Guide
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To migrate the remaining components:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Copy the component JSX file from the original project to `src/components/Home/`
+2. Create the corresponding LESS file in `src/styles/`
+3. Import the component in `src/pages/Home.jsx`
+4. Uncomment the component in the `children` array
+5. Check for any dependencies and update as needed
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Dependency Notes
 
-### `npm run eject`
+This project uses:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- React 18
+- Ant Design 4.24.10 (to maintain compatibility with other components)
+- React Router DOM 6
+- RC Animation libraries (rc-queue-anim, rc-scroll-anim, rc-tween-one)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Build for Production
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm run build
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Build output will be in the `dist` directory.
