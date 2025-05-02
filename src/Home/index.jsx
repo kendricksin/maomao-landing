@@ -1,26 +1,20 @@
-/* eslint no-undef: 0 */
-/* eslint arrow-parens: 0 */
 import React from 'react';
 import { enquireScreen } from 'enquire-js';
 
-import Nav0 from './Nav0';
 import Content11 from './Content11';
 import Content1 from './Content1';
 import Feature2 from './Feature2';
 import Feature1 from './Feature1';
 import Feature0 from './Feature0';
 import Pricing0 from './Pricing0';
-import Footer2 from './Footer2';
 
 import {
-  Nav00DataSource,
   Content110DataSource,
   Content10DataSource,
   Feature20DataSource,
   Feature10DataSource,
   Feature00DataSource,
   Pricing00DataSource,
-  Footer21DataSource,
 } from './data.source';
 import './less/antMotionStyle.less';
 
@@ -60,12 +54,6 @@ export default class Home extends React.Component {
 
   render() {
     const children = [
-      <Nav0
-        id="Nav0_0"
-        key="Nav0_0"
-        dataSource={Nav00DataSource}
-        isMobile={this.state.isMobile}
-      />,
       <Content11
         id="Content11_0"
         key="Content11_0"
@@ -100,12 +88,6 @@ export default class Home extends React.Component {
         id="Pricing0_0"
         key="Pricing0_0"
         dataSource={Pricing00DataSource}
-        isMobile={this.state.isMobile}
-      />,
-      <Footer2
-        id="Footer2_1"
-        key="Footer2_1"
-        dataSource={Footer21DataSource}
         isMobile={this.state.isMobile}
       />,
     ];

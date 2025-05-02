@@ -1,6 +1,7 @@
 import React from 'react';
 import TweenOne from 'rc-tween-one';
 import { Menu } from 'antd';
+import { Link, useLocation } from 'react-router-dom';
 import { getChildrenToRender } from './utils';
 
 const { Item, SubMenu } = Menu;
@@ -20,10 +21,74 @@ class Header extends React.Component {
     });
   };
 
+  getSelectedKeys = () => {
+    // Get current path
+    const pathname = window.location.pathname;
+    
+    if (pathname === '/') return ['home'];
+    if (pathname === '/contact') return ['contact'];
+    if (pathname === '/faq') return ['faq'];
+    
+    return ['home'];
+  };
+
   render() {
     const { dataSource, isMobile, ...props } = this.props;
     const { phoneOpen } = this.state;
-    const navData = dataSource.Menu.children;
+    const navData = [
+      {
+        name: 'home',
+        className: 'header0-item',
+        children: {
+          href: '/',
+          children: [
+            {
+              children: (
+                <span>
+                  <p>Home</p>
+                </span>
+              ),
+              name: 'text',
+            },
+          ],
+        },
+      },
+      {
+        name: 'contact',
+        className: 'header0-item',
+        children: {
+          href: '/contact',
+          children: [
+            {
+              children: (
+                <span>
+                  <p>Contact Us</p>
+                </span>
+              ),
+              name: 'text',
+            },
+          ],
+        },
+      },
+      {
+        name: 'faq',
+        className: 'header0-item',
+        children: {
+          href: '/faq',
+          children: [
+            {
+              children: (
+                <span>
+                  <p>FAQ</p>
+                </span>
+              ),
+              name: 'text',
+            },
+          ],
+        },
+      }
+    ];
+    
     const navChildren = navData.map((item) => {
       const { children: a, subItem, ...itemProps } = item;
       if (subItem) {
@@ -44,9 +109,9 @@ class Header extends React.Component {
             {subItem.map(($item, ii) => {
               const { children: childItem } = $item;
               const child = childItem.href ? (
-                <a {...childItem}>
+                <Link to={childItem.href} {...childItem}>
                   {childItem.children.map(getChildrenToRender)}
-                </a>
+                </Link>
               ) : (
                 <div {...childItem}>
                   {childItem.children.map(getChildrenToRender)}
@@ -63,12 +128,13 @@ class Header extends React.Component {
       }
       return (
         <Item key={item.name} {...itemProps}>
-          <a {...a} className={`header0-item-block ${a.className}`.trim()}>
+          <Link to={a.href} {...a} className={`header0-item-block ${a.className}`.trim()}>
             {a.children.map(getChildrenToRender)}
-          </a>
+          </Link>
         </Item>
       );
     });
+    
     const moment = phoneOpen === undefined ? 300 : null;
     return (
       <TweenOne
@@ -85,7 +151,9 @@ class Header extends React.Component {
             animation={{ x: -30, type: 'from', ease: 'easeOutQuad' }}
             {...dataSource.logo}
           >
-            <img width="100%" src={dataSource.logo.children} alt="img" />
+            <Link to="/">
+              <img width="100%" src={dataSource.logo.children} alt="img" />
+            </Link>
           </TweenOne>
           {isMobile && (
             <div
@@ -120,7 +188,7 @@ class Header extends React.Component {
           >
             <Menu
               mode={isMobile ? 'inline' : 'horizontal'}
-              defaultSelectedKeys={['sub0']}
+              defaultSelectedKeys={this.getSelectedKeys()}
               theme="dark"
             >
               {navChildren}
