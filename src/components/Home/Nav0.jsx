@@ -3,15 +3,11 @@ import TweenOne from 'rc-tween-one';
 import { Menu } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 
-const { Item, SubMenu } = Menu;
+const { Item } = Menu;
 
 const Nav0 = (props) => {
   const [phoneOpen, setPhoneOpen] = useState(false);
   const location = useLocation();
-
-  const phoneClick = () => {
-    setPhoneOpen(!phoneOpen);
-  };
 
   const getSelectedKeys = () => {
     // Get current path
@@ -42,6 +38,19 @@ const Nav0 = (props) => {
     );
   });
   
+  // Custom styles for the menu to ensure it's always visible
+  const menuStyle = {
+    listStyle: 'none'
+  };
+  
+  // Responsive menu container style
+  const menuContainerStyle = {
+    display: 'flex',
+    justifyContent: isMobile ? 'center' : 'flex-end',
+    width: '100%',
+    marginLeft: isMobile ? 0 : 'auto'
+  };
+  
   return (
     <TweenOne
       component="header"
@@ -51,7 +60,7 @@ const Nav0 = (props) => {
     >
       <div
         {...dataSource.page}
-        className={`${dataSource.page.className}${phoneOpen ? ' open' : ''}`}
+        className={`${dataSource.page.className}`}
       >
         <TweenOne
           animation={{ x: -30, type: 'from', ease: 'easeOutQuad' }}
@@ -62,46 +71,18 @@ const Nav0 = (props) => {
           </Link>
         </TweenOne>
         
-        {isMobile && (
-          <div
-            {...dataSource.mobileMenu}
-            onClick={() => {
-              phoneClick();
-            }}
-          >
-            <em />
-            <em />
-            <em />
-          </div>
-        )}
-        
-        <TweenOne
-          {...dataSource.Menu}
-          animation={
-            isMobile
-              ? {
-                  opacity: phoneOpen ? 1 : 0,
-                  height: phoneOpen ? 'auto' : 0,
-                  duration: 300,
-                  onComplete: (e) => {
-                    if (phoneOpen) {
-                      e.target.style.height = 'auto';
-                    }
-                  },
-                  ease: 'easeInOutQuad',
-                }
-              : null
-          }
-        >
+        {/* Always show the menu, just adapt its style */}
+        <div style={menuContainerStyle}>
           <Menu
-            mode={isMobile ? 'inline' : 'horizontal'}
+            mode="horizontal"
             defaultSelectedKeys={getSelectedKeys()}
             selectedKeys={getSelectedKeys()}
             theme="dark"
+            style={menuStyle}
           >
             {navChildren}
           </Menu>
-        </TweenOne>
+        </div>
       </div>
     </TweenOne>
   );

@@ -1,11 +1,30 @@
 import React, { useState } from 'react';
-import { Form, Input, Button, Row, Col, Typography } from 'antd';
-import { MailOutlined, PhoneOutlined, EnvironmentOutlined } from '@ant-design/icons';
+import {
+  Form,
+  Input,
+  Button,
+  Typography,
+  Row,
+  Col,
+  Divider,
+  message,
+  Space,
+} from 'antd';
+import {
+  UserOutlined,
+  ShopOutlined,
+  MailOutlined,
+  PhoneOutlined,
+  MessageOutlined,
+  CheckOutlined,
+} from '@ant-design/icons';
+import '../styles/contact.less';
 
 const { Title, Paragraph } = Typography;
 const { TextArea } = Input;
 
 const Contact = () => {
+  const [form] = Form.useForm();
   const [submitting, setSubmitting] = useState(false);
 
   const onFinish = (values) => {
@@ -15,119 +34,185 @@ const Contact = () => {
     // Simulate form submission
     setTimeout(() => {
       setSubmitting(false);
-      // Reset form here if needed
-    }, 2000);
+      message.success('ส่งข้อความสำเร็จ! เราจะติดต่อกลับโดยเร็วที่สุด');
+      form.resetFields();
+    }, 1500);
   };
 
   return (
-    <div className="home-page-wrapper" style={{ padding: '64px 24px' }}>
-      <div className="home-page" style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <div className="title-wrapper" style={{ margin: '0 auto 64px', textAlign: 'center' }}>
-          <h1>Contact Us</h1>
-          <p>Get in touch with our team for any questions about partnerships or services</p>
-        </div>
-        
-        <Row gutter={[48, 48]}>
-          <Col xs={24} md={12} style={{ marginBottom: '24px' }}>
-            <div style={{ backgroundColor: '#fff', padding: '32px', borderRadius: '6px', boxShadow: '0 2px 8px rgba(0,0,0,0.09)' }}>
-              <Form
-                layout="vertical"
-                onFinish={onFinish}
-              >
-                <Form.Item
-                  name="name"
-                  label="Name"
-                  rules={[{ required: true, message: 'Please enter your name' }]}
-                >
-                  <Input placeholder="Your name" size="large" />
-                </Form.Item>
-
-                <Form.Item
-                  name="email"
-                  label="Email"
-                  rules={[
-                    { required: true, message: 'Please enter your email' },
-                    { type: 'email', message: 'Please enter a valid email' }
-                  ]}
-                >
-                  <Input placeholder="Your email" size="large" />
-                </Form.Item>
-
-                <Form.Item
-                  name="subject"
-                  label="Subject"
-                  rules={[{ required: true, message: 'Please enter a subject' }]}
-                >
-                  <Input placeholder="Subject" size="large" />
-                </Form.Item>
-
-                <Form.Item
-                  name="message"
-                  label="Message"
-                  rules={[{ required: true, message: 'Please enter your message' }]}
-                >
-                  <TextArea rows={5} placeholder="Your message" size="large" />
-                </Form.Item>
-
-                <Form.Item>
-                  <Button 
-                    type="primary" 
-                    htmlType="submit" 
-                    loading={submitting}
-                    size="large"
-                    style={{ 
-                      height: '48px',
-                      width: '100%',
-                      background: 'linear-gradient(to right, #05cbff, #1e5aff)',
-                      border: 'none',
-                      borderRadius: '24px'
-                    }}
-                  >
-                    Send Message
-                  </Button>
-                </Form.Item>
-              </Form>
-            </div>
-          </Col>
-
-          <Col xs={24} md={12}>
-            <div style={{ backgroundColor: '#fff', padding: '32px', borderRadius: '6px', boxShadow: '0 2px 8px rgba(0,0,0,0.09)', height: '100%' }}>
-              <Title level={3} style={{ marginBottom: '24px' }}>Contact Information</Title>
-              <Paragraph style={{ fontSize: '16px', marginBottom: '32px' }}>
-                We're here to help with any questions about partnerships, services, or support.
-              </Paragraph>
-
-              <div style={{ marginBottom: '24px', display: 'flex', alignItems: 'flex-start' }}>
-                <MailOutlined style={{ fontSize: '24px', marginRight: '16px', color: '#1e5aff' }} />
-                <div>
-                  <Title level={5} style={{ margin: '0 0 8px 0' }}>Email</Title>
-                  <Paragraph>info@maomaosocial.com</Paragraph>
-                </div>
-              </div>
-
-              <div style={{ marginBottom: '24px', display: 'flex', alignItems: 'flex-start' }}>
-                <PhoneOutlined style={{ fontSize: '24px', marginRight: '16px', color: '#1e5aff' }} />
-                <div>
-                  <Title level={5} style={{ margin: '0 0 8px 0' }}>Phone</Title>
-                  <Paragraph>+66 123 456 789</Paragraph>
-                </div>
-              </div>
-
-              <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-                <EnvironmentOutlined style={{ fontSize: '24px', marginRight: '16px', color: '#1e5aff' }} />
-                <div>
-                  <Title level={5} style={{ margin: '0 0 8px 0' }}>Address</Title>
-                  <Paragraph>
-                    123 Sukhumvit Road<br />
-                    Bangkok, 10110<br />
-                    Thailand
-                  </Paragraph>
-                </div>
-              </div>
-            </div>
-          </Col>
-        </Row>
+    <div className="contact-wrapper">
+      {/* Header Section */}
+      <div className="contact-header">
+        <Title level={2}>ติดต่อเรา</Title>
+        <Paragraph>เริ่มใช้งาน MaoMao และสร้างรายได้เสริมให้ร้านของคุณวันนี้</Paragraph>
       </div>
+      
+      <Row gutter={[24, 24]}>
+        {/* Form Section */}
+        <Col xs={24} lg={16}>
+          <div className="form-container">
+            <div className="form-header">
+              <Title level={4}>ข้อมูลร้านค้าของคุณ</Title>
+            </div>
+            
+            <Form
+              form={form}
+              layout="horizontal"
+              labelCol={{ xs: 24, sm: 6 }}
+              wrapperCol={{ xs: 24, sm: 18 }}
+              onFinish={onFinish}
+              requiredMark={false}
+              className="contact-form"
+            >
+              <Form.Item
+                name="name"
+                label="ชื่อ"
+                rules={[{ required: true, message: 'กรุณากรอกชื่อของคุณ' }]}
+              >
+                <Input 
+                  prefix={<UserOutlined />} 
+                  placeholder="ชื่อของคุณ" 
+                />
+              </Form.Item>
+
+              <Form.Item
+                name="shopName"
+                label="ชื่อร้าน"
+                rules={[{ required: true, message: 'กรุณากรอกชื่อร้านของคุณ' }]}
+              >
+                <Input 
+                  prefix={<ShopOutlined />} 
+                  placeholder="ชื่อร้านของคุณ" 
+                />
+              </Form.Item>
+
+              <Form.Item
+                name="email"
+                label="อีเมล"
+                rules={[
+                  { required: true, message: 'กรุณากรอกอีเมลของคุณ' },
+                  { type: 'email', message: 'กรุณากรอกอีเมลที่ถูกต้อง' }
+                ]}
+              >
+                <Input 
+                  prefix={<MailOutlined />} 
+                  placeholder="อีเมลของคุณ" 
+                />
+              </Form.Item>
+
+              <Form.Item
+                name="phone"
+                label="เบอร์โทรศัพท์"
+                rules={[{ required: true, message: 'กรุณากรอกเบอร์โทรศัพท์' }]}
+              >
+                <Input 
+                  prefix={<PhoneOutlined />} 
+                  placeholder="เบอร์โทรศัพท์" 
+                />
+              </Form.Item>
+
+              <Form.Item
+                name="lineID"
+                label="Line ID"
+                extra="(ถ้ามี)"
+              >
+                <Input placeholder="Line ID" />
+              </Form.Item>
+
+              <Form.Item
+                name="message"
+                label="ข้อความ"
+                extra="(optional)"
+              >
+                <TextArea 
+                  rows={4} 
+                  placeholder="ข้อความหรือคำถามเพิ่มเติม" 
+                />
+              </Form.Item>
+
+              <Form.Item wrapperCol={{ xs: 24, sm: { span: 18, offset: 6 } }}>
+                <Button 
+                  type="primary" 
+                  htmlType="submit" 
+                  loading={submitting}
+                  className="submit-button"
+                >
+                  ส่งข้อความ
+                </Button>
+              </Form.Item>
+            </Form>
+          </div>
+        </Col>
+        
+        {/* Promotion Section */}
+        <Col xs={24} lg={8}>
+          <div className="promo-container">
+            <div className="promo-header">
+              <div className="promo-tag">โปรโมชั่นพิเศษ</div>
+              <Title level={4}>สมัครวันนี้รับสิทธิพิเศษ!</Title>
+            </div>
+            
+            <div className="promo-list">
+              <div className="promo-item">
+                <CheckOutlined className="promo-icon" />
+                <div>รับส่วนแบ่งรายได้ <span className="highlight">60%</span> ในเดือนแรก (ปกติ 50%)</div>
+              </div>
+              
+              <div className="promo-item">
+                <CheckOutlined className="promo-icon" />
+                <div>ฟรี! แผ่นพับ QR Code สำหรับวางบนโต๊ะ จำนวน 20 ชุด</div>
+              </div>
+              
+              <div className="promo-item">
+                <CheckOutlined className="promo-icon" />
+                <div>ฟรี! โปรโมชันส่วนลด 20% สำหรับลูกค้า 50 คนแรก</div>
+              </div>
+            </div>
+            
+            <Divider className="promo-divider" />
+            
+            <div className="promo-note">
+              *โปรโมชั่นมีระยะเวลาจำกัด เงื่อนไขเป็นไปตามที่บริษัทกำหนด
+            </div>
+            
+            <Divider />
+            
+            {/* Contact Info */}
+            <div className="contact-info">
+              <Title level={4}>ข้อมูลติดต่อ</Title>
+              <Paragraph>
+                ติดต่อทีมงาน MaoMao เพื่อสอบถามข้อมูลเพิ่มเติม
+              </Paragraph>
+              
+              <Space direction="vertical" size="middle" className="info-list">
+                <div className="info-item">
+                  <MailOutlined className="info-icon" />
+                  <div>
+                    <div className="info-label">อีเมล</div>
+                    <div>maomaolife.team@gmail.com</div>
+                  </div>
+                </div>
+                
+                <div className="info-item">
+                  <PhoneOutlined className="info-icon" />
+                  <div>
+                    <div className="info-label">โทรศัพท์</div>
+                    <div>xxx-xxx-xxxx</div>
+                  </div>
+                </div>
+                
+                <div className="info-item">
+                  <MessageOutlined className="info-icon" />
+                  <div>
+                    <div className="info-label">Line Official</div>
+                    <div>@415hyizr (MaoMao Support)</div>
+                  </div>
+                </div>
+              </Space>
+            </div>
+          </div>
+        </Col>
+      </Row>
     </div>
   );
 };

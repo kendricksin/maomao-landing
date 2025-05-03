@@ -10,104 +10,99 @@ const FAQ = () => {
     <div className="home-page-wrapper" style={{ padding: '64px 24px' }}>
       <div className="home-page" style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <div className="title-wrapper" style={{ margin: '0 auto 64px', textAlign: 'center' }}>
-          <h1>FAQ & Terms</h1>
-          <p>Find answers to common questions and learn about our policies</p>
+          <h1>FAQ & เงื่อนไขข้อตกลง</h1>
+          <p>คำถามที่พบบ่อยและข้อมูลเกี่ยวกับบริการของเรา</p>
         </div>
 
         <Tabs defaultActiveKey="1" tabPosition="top" style={{ minHeight: '400px' }}>
-          <TabPane tab="Frequently Asked Questions" key="1">
+          <TabPane tab="คำถามที่พบบ่อย" key="1">
             <Collapse bordered={false} defaultActiveKey={['1']} expandIconPosition="right">
-              <Panel header="What is MaoMao Social Platform?" key="1" style={{ marginBottom: '16px' }}>
+              <Panel header="MaoMao คืออะไร?" key="1" style={{ marginBottom: '16px' }}>
                 <Paragraph>
-                  MaoMao is Thailand's friendliest social community platform designed specifically for bar and restaurant goers.
-                  We connect customers with venues to create memorable experiences and build lasting relationships.
+                  MaoMao คือแพลตฟอร์มเทคโนโลยีนวัตกรรมที่ช่วยให้ลูกค้าในร้านของคุณสามารถแชร์รูปภาพและข้อมูลติดต่อขึ้นบนจอทีวีของร้านได้อย่างง่ายดาย 
+                  เพียงแค่สแกน QR Code และจ่ายเงินผ่านระบบ ก่อให้เกิดประสบการณ์การเที่ยวร้านที่แปลกใหม่ พร้อมสร้างรายได้เสริมให้กับร้านของคุณโดยไม่ต้องลงทุนเพิ่ม!
                 </Paragraph>
               </Panel>
-              <Panel header="How do I become a partner?" key="2" style={{ marginBottom: '16px' }}>
+              <Panel header="ลูกค้าสามารถอัปโหลดเนื้อหาที่ไม่เหมาะสมขึ้นจอได้หรือไม่?" key="2" style={{ marginBottom: '16px' }}>
                 <Paragraph>
-                  Becoming a partner is easy! Simply fill out the form on our Contact page, and one of our
-                  representatives will reach out within 48 hours to discuss partnership options and get you set up.
+                  ไม่ต้องกังวล! MaoMao มีระบบ AI ตรวจสอบรูปภาพและข้อความที่ไม่เหมาะสมโดยอัตโนมัติ 
+                  ทุกรูปภาพและข้อความจะถูกคัดกรองก่อนแสดงบนจอ ช่วยรักษาบรรยากาศและภาพลักษณ์ที่ดีของร้านคุณ
                 </Paragraph>
               </Panel>
-              <Panel header="What benefits do partners receive?" key="3" style={{ marginBottom: '16px' }}>
+              <Panel header="ร้านจะได้รับส่วนแบ่งรายได้เมื่อไหร่?" key="3" style={{ marginBottom: '16px' }}>
                 <Paragraph>
-                  Partners gain access to our customer base, advanced analytics, promotional tools, and a dedicated
-                  profile page. You'll be able to create custom experiences, run targeted promotions, and build
-                  customer loyalty through our platform.
+                  ร้านจะได้รับส่วนแบ่งรายได้ 50% ทุกสิ้นเดือนโดยอัตโนมัติ เราจะโอนเงินเข้าบัญชีที่ร้านลงทะเบียนไว้
                 </Paragraph>
               </Panel>
-              <Panel header="Is there a fee to join as a partner?" key="4" style={{ marginBottom: '16px' }}>
+              <Panel header="ร้านสามารถกำหนดราคาเองได้หรือไม่?" key="4" style={{ marginBottom: '16px' }}>
                 <Paragraph>
-                  We offer multiple partnership tiers to suit businesses of all sizes. Our basic tier starts
-                  with a small monthly subscription fee, while premium tiers offer additional features at competitive rates.
-                  Contact us for detailed pricing information.
+                  ได้! ร้านสามารถกำหนดราคาได้เองตามความเหมาะสมกับกลุ่มลูกค้า ไม่ว่าจะตั้งราคาเท่าไร ร้านจะได้รับส่วนแบ่ง 50% เสมอ
                 </Paragraph>
               </Panel>
-              <Panel header="How do customers use the platform?" key="5" style={{ marginBottom: '16px' }}>
+              <Panel header="หากอุปกรณ์มีปัญหา จะติดต่อใครได้บ้าง?" key="5" style={{ marginBottom: '16px' }}>
                 <Paragraph>
-                  Customers download the MaoMao app to discover venues, connect with other users, save their favorite
-                  experiences, and receive personalized recommendations. They can check in at venues, participate in
-                  special promotions, and maintain a social profile of their nightlife experiences.
+                  ทีมงาน MaoMao พร้อมให้บริการตลอด 24 ชั่วโมง สามารถติดต่อผ่าน Line Official (@415hyizr) หรือโทรศัพท์ 
+                  โดยเรามีทีมช่างเทคนิคพร้อมแก้ไขปัญหาภายใน 24 ชั่วโมง
                 </Paragraph>
               </Panel>
-              <Panel header="What areas of Thailand do you cover?" key="6" style={{ marginBottom: '16px' }}>
+              <Panel header="ต้องเซ็นสัญญาผูกมัดนานแค่ไหน?" key="6" style={{ marginBottom: '16px' }}>
                 <Paragraph>
-                  We currently operate in Bangkok, Pattaya, Phuket, Chiang Mai, and Koh Samui, with plans to expand
-                  to additional locations throughout Thailand in the coming months.
+                  สัญญาเริ่มต้นเพียง 3 เดือนเท่านั้น และไม่มีค่าปรับหากยกเลิกก่อนกำหนด 
+                  เรามั่นใจในบริการของเราว่าคุณจะพอใจและต่อสัญญากับเราต่อไป!
                 </Paragraph>
               </Panel>
             </Collapse>
           </TabPane>
-          <TabPane tab="Terms & Conditions" key="2">
+          <TabPane tab="เงื่อนไขและข้อตกลง" key="2">
             <div style={{ padding: '16px', backgroundColor: '#fff', borderRadius: '6px', boxShadow: '0 2px 8px rgba(0,0,0,0.09)' }}>
-              <Title level={3}>Terms of Service</Title>
+              <Title level={3}>เงื่อนไขการให้บริการ MaoMao</Title>
               <Paragraph>
-                These Terms of Service ("Terms") govern your access to and use of the MaoMao Social Platform, 
-                including our website, mobile applications, and all offered services (collectively, the "Services"). 
-                By accessing or using our Services, you agree to be bound by these Terms.
+                เงื่อนไขการให้บริการนี้ ("เงื่อนไข") ควบคุมการเข้าถึงและการใช้งานแพลตฟอร์ม MaoMao 
+                รวมถึงเว็บไซต์ แอปพลิเคชันมือถือ และบริการทั้งหมดที่นำเสนอ (เรียกรวมกันว่า "บริการ") 
+                โดยการเข้าถึงหรือใช้บริการของเรา คุณตกลงที่จะปฏิบัติตามเงื่อนไขเหล่านี้
               </Paragraph>
               
               <Divider />
               
-              <Title level={4}>1. Acceptance of Terms</Title>
+              <Title level={4}>1. การยอมรับเงื่อนไข</Title>
               <Paragraph>
-                By accessing or using the MaoMao Social Platform, you agree to be bound by these Terms, 
-                our Privacy Policy, and any additional terms that may apply to specific features of the Services. 
-                If you do not agree to these Terms, you may not access or use the Services.
+                โดยการเข้าถึงหรือใช้งานแพลตฟอร์ม MaoMao คุณตกลงที่จะปฏิบัติตามเงื่อนไขเหล่านี้ 
+                นโยบายความเป็นส่วนตัวของเรา และเงื่อนไขเพิ่มเติมที่อาจมีผลบังคับใช้กับคุณสมบัติเฉพาะของบริการ 
+                หากคุณไม่เห็นด้วยกับเงื่อนไขเหล่านี้ คุณไม่สามารถเข้าถึงหรือใช้บริการได้
               </Paragraph>
               
-              <Title level={4}>2. Eligibility</Title>
+              <Title level={4}>2. ข้อตกลงการเป็นพาร์ทเนอร์</Title>
               <Paragraph>
-                You must be at least 18 years old to use our Services. By using our Services, you represent 
-                and warrant that you are at least 18 years old and that your use of the Services does not 
-                violate any applicable laws or regulations.
+                สัญญาเริ่มต้นมีระยะเวลา 3 เดือน (ไม่มีค่าปรับหากยกเลิกก่อนกำหนด) โดยไม่มีข้อผูกมัดหลังจากสิ้นสุดสัญญา 
+                สามารถต่อสัญญาได้โดยอัตโนมัติ และเรารับประกันระบบทำงานตลอดอายุสัญญา 
+                พาร์ทเนอร์จะได้รับส่วนแบ่งรายได้ 50% จากทุกรายการ โดยโอนเงินให้ทุกสิ้นเดือนโดยอัตโนมัติ
               </Paragraph>
               
-              <Title level={4}>3. Partner Accounts</Title>
+              <Title level={4}>3. เงื่อนไขการใช้งานของลูกค้า</Title>
               <Paragraph>
-                If you register as a partner, you agree to provide accurate, current, and complete information 
-                about your business. You are responsible for maintaining the confidentiality of your account 
-                credentials and for all activities that occur under your account.
+                ลูกค้าที่ใช้บริการต้องปฏิบัติตามเงื่อนไขการใช้งาน ไม่อัปโหลดเนื้อหาที่ละเมิดกฎหมาย 
+                หรือเนื้อหาที่ไม่เหมาะสม ทั้งนี้ระบบ AI ของเราจะทำการตรวจสอบเนื้อหาทั้งหมดโดยอัตโนมัติ 
+                เพื่อป้องกันการแสดงเนื้อหาที่ไม่เหมาะสมบนจอทีวี
               </Paragraph>
               
-              <Title level={4}>4. Content Guidelines</Title>
+              <Title level={4}>4. การยกเลิกสัญญา</Title>
               <Paragraph>
-                You are responsible for all content that you post or share through our Services. Content must 
-                not infringe upon third-party rights, contain illegal material, or violate our community standards. 
-                We reserve the right to remove content that violates these guidelines.
+                พาร์ทเนอร์สามารถยกเลิกสัญญาได้โดยแจ้งล่วงหน้าอย่างน้อย 15 วันก่อนสิ้นสุดสัญญา 
+                โดยไม่มีค่าปรับหรือค่าใช้จ่ายเพิ่มเติม และหลังจากยกเลิกสัญญา 
+                พาร์ทเนอร์ต้องคืนอุปกรณ์ทั้งหมดให้กับ MaoMao ภายใน 7 วันทำการ
               </Paragraph>
               
-              <Title level={4}>5. Limitation of Liability</Title>
+              <Title level={4}>5. ข้อจำกัดความรับผิดชอบ</Title>
               <Paragraph>
-                To the maximum extent permitted by law, MaoMao Social Platform shall not be liable for any 
-                indirect, incidental, special, consequential, or punitive damages resulting from your use 
-                or inability to use the Services.
+                MaoMao จะไม่รับผิดชอบต่อความเสียหายทางอ้อม ความเสียหายโดยบังเอิญ 
+                ความเสียหายพิเศษ ความเสียหายที่เป็นผลสืบเนื่อง หรือความเสียหายเชิงลงโทษที่เกิดจากการใช้งาน
+                หรือไม่สามารถใช้งานบริการได้ ในขอบเขตสูงสุดที่กฎหมายอนุญาต
               </Paragraph>
               
               <Divider />
               
               <Paragraph type="secondary" style={{ fontSize: '14px' }}>
-                Last updated: May 1, 2025
+                อัปเดตล่าสุด: 1 พฤษภาคม 2568
               </Paragraph>
             </div>
           </TabPane>

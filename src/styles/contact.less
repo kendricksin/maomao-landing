@@ -1,0 +1,214 @@
+@import 'antd/lib/style/themes/default.less';
+@import '../styles/variables.less';
+
+.contact-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+  
+  // Header styling
+  .contact-header {
+    text-align: center;
+    margin-bottom: 40px;
+    
+    h2 {
+      font-size: 28px;
+      color: @theme-color;
+      margin-bottom: 12px;
+    }
+    
+    .ant-typography {
+      font-size: 16px;
+      color: @text-color-secondary;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+  }
+  
+  // Form container
+  .form-container {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    
+    .form-header {
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid @border-color-split;
+      
+      h4 {
+        margin: 0;
+        color: @theme-color;
+      }
+    }
+    
+    // Style for form
+    .contact-form {
+      .ant-form-item-label > label {
+        color: @text-color-heading;
+        font-weight: 500;
+      }
+      
+      .ant-input-affix-wrapper .anticon {
+        color: @theme-color;
+      }
+      
+      .ant-form-item-extra {
+        color: @text-color-secondary;
+        margin-left: 4px;
+        font-size: 13px;
+      }
+      
+      .submit-button {
+        width: 100%;
+        height: 40px;
+        font-size: 16px;
+        font-weight: 500;
+        background: @theme-color;
+        border-color: @theme-color;
+        
+        &:hover, &:focus {
+          background: lighten(@theme-color, 5%);
+          border-color: lighten(@theme-color, 5%);
+        }
+        
+        &:active {
+          background: darken(@theme-color, 5%);
+          border-color: darken(@theme-color, 5%);
+        }
+      }
+    }
+  }
+  
+  // Promotion styling
+  .promo-container {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    height: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    
+    .promo-header {
+      margin-bottom: 24px;
+      
+      .promo-tag {
+        display: inline-block;
+        background: @theme-color;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        margin-bottom: 12px;
+      }
+      
+      h4 {
+        margin: 0;
+        color: @text-color-heading;
+      }
+    }
+    
+    .promo-list {
+      margin-bottom: 20px;
+      
+      .promo-item {
+        display: flex;
+        margin-bottom: 16px;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+        
+        .promo-icon {
+          color: @theme-color;
+          margin-right: 12px;
+          font-size: 16px;
+          margin-top: 3px;
+        }
+        
+        .highlight {
+          color: @theme-color;
+          font-weight: bold;
+        }
+      }
+    }
+    
+    .promo-divider {
+      margin: 16px 0;
+    }
+    
+    .promo-note {
+      font-size: 14px;
+      color: #ff4d4f;
+      padding: 8px 12px;
+      background: rgba(255, 77, 79, 0.06);
+      border-radius: 4px;
+    }
+    
+    // Contact info styling
+    .contact-info {
+      margin-top: 28px;
+      
+      h4 {
+        color: @theme-color;
+        margin-bottom: 12px;
+      }
+      
+      .ant-typography {
+        margin-bottom: 20px;
+      }
+      
+      .info-list {
+        width: 100%;
+      }
+      
+      .info-item {
+        display: flex;
+        
+        .info-icon {
+          color: @theme-color;
+          font-size: 18px;
+          margin-right: 12px;
+          margin-top: 4px;
+        }
+        
+        .info-label {
+          font-weight: 500;
+          margin-bottom: 4px;
+          color: @text-color-heading;
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: @screen-md) {
+  .contact-wrapper {
+    padding: 24px 16px 40px;
+    
+    .contact-form {
+      .ant-form-item-label {
+        padding-bottom: 4px;
+      }
+    }
+  }
+}
+
+// Add specific dark mode styles
+@media (prefers-color-scheme: dark) {
+  .contact-wrapper {
+    .form-container, .promo-container {
+      background: #1f1f1f;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    .submit-button {
+      color: white;
+    }
+    
+    .promo-note {
+      background: rgba(255, 77, 79, 0.1);
+    }
+  }
+}

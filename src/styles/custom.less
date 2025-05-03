@@ -1,39 +1,16 @@
-// Define custom variables for our theme
+@import './variables.less';
+
 @line-color: #e9e9e9;
 @shadow-color: rgba(0, 0, 0, 0.15);
 
-@bottom-bar-bg-color: #262626;
+@bottom-bar-bg-color: @dark-contrast;
 @bottom-bar-line-color: #000;
 
-@template-bg-color: #001529;
-@template-bg-color-light: #ececec;
-@template-nav-bg-color: #001529;
-@template-text-color: #ccc;
-@template-text-title-color: #bcbcbc;
-@template-text-color-light: #fff;
-@template-footer-text-color: #999;
-
-@animate-duration: .45s;
-
-// Feature section background
-#Feature2_0 {
-  background-color: #450a53;
-  
-  .ant-row > .ant-col > .content2-title {
-    color: #ffffff;
-  }
-  
-  .ant-row > .ant-col > .content2-content {
-    color: #f1f1f1;
-  }
-}
-
-// Box shadow effect
+/* Detail page image and box styles */
 .page-shadow() {
   box-shadow: 0 5px 8px @shadow-color;
 }
 
-// Card hover effect
 .page-pro() {
   border-radius: 6px;
   border: 1px solid @line-color;
@@ -42,5 +19,340 @@
   &:hover {
     .page-shadow();
     transform: translateY(-5px);
+  }
+}
+
+// General styling
+body {
+  color: @text-color-dark;
+  background-color: @bg-color-primary;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: @text-color-heading;
+}
+
+a {
+  color: @theme-color;
+  &:hover {
+    color: @theme-color-dark;
+  }
+}
+
+// Apply theme color to primary buttons
+.ant-btn-primary {
+  background-color: @theme-color;
+  border-color: @theme-color;
+  &:hover, &:focus {
+    background-color: @theme-color-dark;
+    border-color: @theme-color-dark;
+  }
+}
+
+// Header navigation styling
+.header0 {
+  background-color: @theme-color;
+  
+  .ant-menu-dark {
+    background-color: @theme-color;
+    
+    .ant-menu-item-selected {
+      background-color: @theme-color-dark;
+    }
+    
+    .ant-menu-item:hover:not(.ant-menu-item-selected) {
+      background-color: fade(@theme-color-dark, 50%);
+    }
+  }
+}
+
+// Content11 hero section
+.content11-wrapper {
+  background: linear-gradient(to bottom, @theme-color, darken(@theme-color, 10%));
+  background-size: cover;
+  
+  .title-h1, .title-content {
+    color: @text-color-light;
+  }
+  
+  .button {
+    background: linear-gradient(to right, lighten(@secondary-color, 10%), @secondary-color) !important;
+    color: @dark-contrast;
+    font-weight: 600;
+    box-shadow: 0 8px 16px fade(@secondary-color-dark, 40%);
+    
+    &:hover {
+      background: @secondary-color !important;
+      box-shadow: 0 12px 20px fade(@secondary-color-dark, 50%);
+    }
+  }
+}
+
+// ===== UPDATED BACKGROUND COLORS FOR SPECIFIC SECTIONS =====
+
+// Content1 - PRIMARY (white background)
+#Content1_0.content1-wrapper {
+  background-color: @bg-color-dark;
+  // border-top: 1px solid @line-color;
+  // border-bottom: 1px solid @line-color;
+  padding: 64px 0;
+  
+  .content1-title {
+    color: @text-color-light;
+  }
+  
+  .content1-content {
+    color: @text-color-light;
+  }
+  
+  .content1-img img, .content1-img svg {
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+
+// Feature2 
+#Feature2_0.content2-wrapper {
+  background-color: @template-bg-color-light; // Override the previous theme-color
+  padding: 64px 0;
+  
+  .content2-title {
+    color:@text-color-secondary !important;
+  }
+  
+  .content2-content {
+    color: fade(@text-color-secondary, 90%) !important;
+  }
+  
+  .content2-img img {
+    // box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    // border-radius: 4px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.3);
+      // box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+    }
+  }
+}
+
+// Feature1 - PRIMARY (white background)
+#Feature1_0.content1-wrapper {
+  background-color: @bg-color-dark;
+  // border-top: 1px solid @line-color;
+  // border-bottom: 1px solid @line-color;
+  padding: 64px 0;
+  
+  .content1-title {
+    color: @text-color-light;
+  }
+  
+  .content1-content {
+    color: @text-color-light;
+  }
+  
+  .content1-img img, .content1-img svg {
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+
+// Feature sections - General styling
+.content1-wrapper {
+  .content1-title {
+    color: @text-color-heading;
+  }
+  
+  .content1-content {
+    color: @text-color-secondary;
+  }
+}
+
+.feature0-block-title {
+  color: @text-color-heading;
+}
+
+// How It Works Section Styles
+.how-it-works-wrapper {
+  background-color: fade(@theme-color-light, 15%);
+  padding: 64px 0;
+  
+  .title-wrapper {
+    margin-bottom: 48px;
+    
+    .title-h1 {
+      color: @text-color-heading;
+    }
+  }
+  
+  .content0-block {
+    position: relative;
+    transition: all 0.3s ease;
+    
+    // Add numbers and connecting line between steps
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      width: 100%;
+      height: 2px;
+      background-color: fade(@theme-color, 20%);
+      z-index: 0;
+    }
+    
+    &:last-child::before {
+      display: none;
+    }
+    
+    .content0-block-icon {
+      position: relative;
+      z-index: 1;
+      background-color: @bg-color-primary;
+      border: 2px solid @theme-color;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px fade(@theme-color, 20%);
+      padding: 10px;
+    }
+    
+    &:hover {
+      transform: translateY(-5px);
+    }
+    
+    .content0-block-title {
+      margin-top: 24px;
+      font-weight: 600;
+      color: @theme-color;
+    }
+    
+    .content0-block-item p {
+      color: @text-color-secondary;
+      line-height: 1.6;
+    }
+  }
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: @screen-md) {
+  .how-it-works-wrapper .content0-block::before {
+    display: none;
+  }
+  
+  .how-it-works-wrapper .content0-block {
+    margin-bottom: 32px;
+  }
+  
+  // Mobile padding for feature sections
+  #Content1_0.content1-wrapper,
+  #Feature1_0.content1-wrapper,
+  #Feature2_0.content2-wrapper {
+    padding: 48px 0;
+  }
+}
+
+/* Case Studies Section Styles */
+.case-studies-wrapper {
+  background-color: fade(@secondary-color, 10%);
+  padding: 30px 0;
+  
+  .content1-title {
+    color: @text-color-heading;
+    font-weight: 600;
+  }
+  
+  .content1-content {
+    color: @text-color-secondary;
+    line-height: 1.8;
+    
+    strong {
+      color: @theme-color;
+      font-size: 18px;
+    }
+  }
+}
+
+// Pricing section
+.pricing0-wrapper {
+  .pricing0-title {
+    color: @text-color-heading;
+  }
+  
+  .pricing0-pricing {
+    color: @theme-color;
+    font-weight: 600;
+  }
+  
+  .ant-btn-primary {
+    background: @theme-color;
+    border-color: @theme-color;
+    
+    &:hover {
+      background: @theme-color-dark;
+      border-color: @theme-color-dark;
+    }
+  }
+}
+
+// Footer
+.footer2-wrapper {
+  background-color: @dark-contrast;
+  
+  .copyright, .copyright a {
+    color: @light-contrast;
+  }
+  
+  .links a {
+    opacity: 0.8;
+    transition: opacity 0.3s;
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+// Contact page
+.ant-form-item-label > label {
+  color: @text-color-heading;
+}
+
+.ant-card-head {
+  border-bottom: 2px solid fade(@theme-color, 20%);
+}
+
+// FAQ page
+.ant-collapse {
+  .ant-collapse-header {
+    color: @theme-color;
+    font-weight: 500;
+  }
+  
+  .ant-collapse-content {
+    color: @text-color-secondary;
+  }
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: @theme-color;
+}
+
+.ant-tabs-ink-bar {
+  background-color: @theme-color;
+}
+
+// General sections
+.title-wrapper {
+  h1 {
+    color: @text-color-heading;
+  }
+  
+  p {
+    color: @text-color-secondary;
   }
 }

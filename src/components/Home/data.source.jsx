@@ -1,11 +1,35 @@
 import React from 'react';
+import Image from '../Image.jsx';
+
+// =========== IMAGE PATHS (Previously in ImageExport.js) ===========
+// Define all image paths directly here for easier debugging
+const VisibilityIcon = '/icons/visibility.svg';
+const AISecurityIcon = '/icons/ai-security.svg';
+const VenueTypeIcon = '/icons/venue-type.png';
+const InstallIcon = '/icons/install.png';
+const QRCodeIcon = '/icons/qr-code.svg';
+const AICheckIcon = '/icons/ai-check.svg';
+const RevenueIcon = '/icons/revenue.svg';
+const MaoMaoLogo = '/logo/maomao-logo.png';
+const FacebookIcon = '/social/facebook.svg';
+const InstagramIcon = '/social/instagram.svg';
+const LineIcon = '/social/line.svg';
+const NewExperience = '/image/new_exp.png';
+const Bennington = '/image/bennington.png';
+const LogoDark = '/logo/maomao-logo-dark.svg';
+
+// Add console logging to help debug image paths
+console.log('Image paths:');
+console.log('MaoMaoLogo:', MaoMaoLogo); // Known working image
+console.log('RevenueIcon:', RevenueIcon); // Problem image
+console.log('NewExperience:', NewExperience); // Problem image
 
 export const Nav00DataSource = {
   wrapper: { className: 'header0 home-page-wrapper' },
   page: { className: 'home-page' },
   logo: {
     className: 'header0-logo',
-    children: 'https://os.alipayobjects.com/rmsportal/mlcYmsRilwraoAe.svg',
+    children: MaoMaoLogo,
   },
   Menu: {
     className: 'header0-menu',
@@ -76,15 +100,14 @@ export const Content110DataSource = {
     children: [
       {
         name: 'image',
-        children:
-          'https://gw.alipayobjects.com/zos/rmsportal/PiqyziYmvbgAudYfhuBr.svg',
+        children: <Image src={LogoDark} alt="Logo" className="title-image" />,
         className: 'title-image',
       },
       {
         name: 'title',
         children: (
           <span>
-            <p>MaoMao Social Platform</p>
+            <p>MaoMao Social</p>
           </span>
         ),
         className: 'title-h1',
@@ -93,7 +116,7 @@ export const Content110DataSource = {
         name: 'content',
         children: (
           <span>
-            <p>Thailand's Friendliest Social Community for Drinkers</p>
+            <p>เปลี่ยนจอทีวีธรรมดาให้เป็นเครื่องสร้างรายได้และประสบการณ์ใหม่</p>
           </span>
         ),
         className: 'title-content',
@@ -102,7 +125,7 @@ export const Content110DataSource = {
         name: 'content2',
         children: (
           <span>
-            <p>Enjoy a safe &amp; exciting nightlife with friends</p>
+            <p>ให้ลูกค้าแชร์รูปและข้อมูลติดต่อขึ้นจอทีวีของร้านผ่าน QR Code</p>
           </span>
         ),
         className: 'title-content',
@@ -114,10 +137,10 @@ export const Content110DataSource = {
     children: {
       a: {
         className: 'button',
-        href: '#',
+        href: '/contact',
         children: (
           <span>
-            <p>Join as partner</p>
+            <p>สมัครเป็นพาร์ทเนอร์วันนี้</p>
           </span>
         ),
       },
@@ -132,14 +155,14 @@ export const Content10DataSource = {
   OverPack: { className: 'home-page content1', playScale: 0.3 },
   imgWrapper: { className: 'content1-img', md: 10, xs: 24 },
   img: {
-    children: 'https://zos.alipayobjects.com/rmsportal/nLzbeGQLPyBJoli.png',
+    children: <Image src={RevenueIcon} alt="Revenue" className="content1-img" />,
   },
   textWrapper: { className: 'content1-text', md: 14, xs: 24 },
   title: {
     className: 'content1-title',
     children: (
       <span>
-        <p>Community of Drinkers</p>
+        <p>สร้างรายได้เสริมโดยไม่ต้องลงทุน</p>
       </span>
     ),
   },
@@ -148,9 +171,9 @@ export const Content10DataSource = {
     children: (
       <span>
         <p>
-          Manage content descriptions for your bar or restaurant, let customers
-          know what unique experiences you offer. Reach out to customers that
-          you want to keep, at a personal level.
+          แบ่งรายได้ 50/50 จากทุกการแจกวาร์ป ไม่มีค่าใช้จ่ายในการติดตั้ง ไม่มีค่าดูแลระบบ 
+          และไม่มีค่าบริการรายเดือน เก็บเฉพาะส่วนแบ่งจากรายได้จริง ร้านค้าสามารถกำหนดราคา
+          ได้เองตามความเหมาะสม (แนะนำที่ 99-299 บาท)
         </p>
       </span>
     ),
@@ -164,14 +187,14 @@ export const Feature20DataSource = {
   OverPack: { className: 'home-page content2', playScale: 0.3 },
   imgWrapper: { className: 'content2-img', md: 10, xs: 24 },
   img: {
-    children: 'https://zos.alipayobjects.com/rmsportal/tvQTfCupGUFKSfQ.png',
+    children: <Image src={NewExperience} alt="New Experience" className="content2-img" />,
   },
   textWrapper: { className: 'content2-text', md: 14, xs: 24 },
   title: {
     className: 'content2-title',
     children: (
       <span>
-        <p>In-store Experiences</p>
+        <p>สร้างสีสันและบรรยากาศที่แปลกใหม่ในร้าน</p>
       </span>
     ),
   },
@@ -180,9 +203,9 @@ export const Feature20DataSource = {
     children: (
       <span>
         <p>
-          Allow your bar goers to interact before, during, and after visiting
-          your bar or restaurant. Help customers to create and retain memorable
-          experiences captured across many nights.&nbsp;
+          ให้ลูกค้าในร้านของคุณสามารถแชร์รูปภาพและข้อมูลติดต่อขึ้นบนจอทีวีได้อย่างง่ายดาย 
+          เพียงแค่สแกน QR Code และจ่ายเงินผ่านระบบ เพิ่มความสนุกและการมีส่วนร่วม 
+          สร้างบรรยากาศที่แตกต่างจากร้านอื่น และเพิ่มการมีปฏิสัมพันธ์ระหว่างกลุ่มลูกค้าในร้าน
         </p>
       </span>
     ),
@@ -194,14 +217,14 @@ export const Feature10DataSource = {
   OverPack: { className: 'home-page content1', playScale: 0.3 },
   imgWrapper: { className: 'content1-img', md: 10, xs: 24 },
   img: {
-    children: 'https://zos.alipayobjects.com/rmsportal/nLzbeGQLPyBJoli.png',
+    children: <Image src={RevenueIcon} alt="Revenue" className="content1-img" />,
   },
   textWrapper: { className: 'content1-text', md: 14, xs: 24 },
   title: {
     className: 'content1-title',
     children: (
       <span>
-        <p>Additional Revenue</p>
+        <p>เทคโนโลยีทันสมัย ใช้งานง่าย</p>
       </span>
     ),
   },
@@ -210,9 +233,9 @@ export const Feature10DataSource = {
     children: (
       <span>
         <p>
-          Create new revenue streams through targeted promotions, loyalty programs
-          and personalized offerings. Increase customer retention and boost
-          average spending per visit.
+          ติดตั้งระบบเพียง 5 นาที พร้อมใช้งานทันที ด้วยการเสียบ D6 TV Stick 
+          เข้ากับช่อง HDMI ของทีวีและเชื่อมต่อ WiFi ทีมงาน MaoMao ดูแลระบบตลอด 24 ชั่วโมง 
+          ลูกค้าใช้งานได้ง่ายผ่านสมาร์ทโฟน ไม่ต้องติดตั้งแอป เพียงสแกน QR Code ที่ปรากฏบนจอ
         </p>
       </span>
     ),
@@ -230,7 +253,7 @@ export const Feature00DataSource = {
         name: 'title',
         children: (
           <span>
-            <p>Partner Offering</p>
+            <p>ประโยชน์ที่ร้านคุณจะได้รับ</p>
           </span>
         ),
       },
@@ -250,15 +273,14 @@ export const Feature00DataSource = {
             {
               name: 'image',
               className: 'content0-block-icon',
-              children:
-                'https://zos.alipayobjects.com/rmsportal/WBnVOjtIlGWbzyQivuyq.png',
+              children: VisibilityIcon,
             },
             {
               name: 'title',
               className: 'content0-block-title',
               children: (
                 <span>
-                  <p>Billing Service</p>
+                  <p>เพิ่มการมองเห็นของร้าน</p>
                 </span>
               ),
             },
@@ -266,7 +288,7 @@ export const Feature00DataSource = {
               name: 'content', 
               children: (
                 <span>
-                  <p>Simple payment processing and invoicing for all partners</p>
+                  <p>ลูกค้าแชร์ประสบการณ์ในร้านคุณผ่านโซเชียลมีเดีย สร้าง Content Marketing โดยธรรมชาติ</p>
                 </span>
               )
             },
@@ -284,15 +306,14 @@ export const Feature00DataSource = {
             {
               name: 'image',
               className: 'content0-block-icon',
-              children:
-                'https://zos.alipayobjects.com/rmsportal/YPMsLQuCEXtuEkmXTTdk.png',
+              children: AISecurityIcon,
             },
             {
               name: 'title',
               className: 'content0-block-title',
               children: (
                 <span>
-                  <p>Historical Data</p>
+                  <p>ระบบ AI ตรวจสอบอัตโนมัติ</p>
                 </span>
               ),
             },
@@ -300,7 +321,7 @@ export const Feature00DataSource = {
               name: 'content',
               children: (
                 <span>
-                  <p>Detailed analytics and insights about your customers</p>
+                  <p>ระบบ AI ตรวจจับและกรองเนื้อหาที่ไม่เหมาะสมโดยอัตโนมัติ ปกป้องภาพลักษณ์ร้านคุณ</p>
                 </span>
               )
             },
@@ -318,15 +339,14 @@ export const Feature00DataSource = {
             {
               name: 'image',
               className: 'content0-block-icon',
-              children:
-                'https://zos.alipayobjects.com/rmsportal/EkXWVvAaFJKCzhMmQYiX.png',
+              children: VenueTypeIcon,
             },
             {
               name: 'title',
               className: 'content0-block-title',
               children: (
                 <span>
-                  <p>Community Marketing</p>
+                  <p>เหมาะกับทุกประเภทร้าน</p>
                 </span>
               ),
             },
@@ -334,7 +354,7 @@ export const Feature00DataSource = {
               name: 'content',
               children: (
                 <span>
-                  <p>Targeted promotions to reach your ideal customers</p>
+                  <p>ผับ บาร์ ร้านเหล้า คาราโอเกะ ร้านอาหาร คลับ และสถานบันเทิงยามค่ำคืนทุกประเภท</p>
                 </span>
               )
             },
@@ -342,6 +362,200 @@ export const Feature00DataSource = {
         },
       },
     ],
+  },
+};
+
+// How It Works section based on Feature0 grid format
+export const HowItWorks0DataSource = {
+  wrapper: { className: 'home-page-wrapper content0-wrapper how-it-works-wrapper' },
+  page: { className: 'home-page content0' },
+  OverPack: { playScale: 0.3, className: '' },
+  titleWrapper: {
+    className: 'title-wrapper',
+    children: [
+      {
+        name: 'title',
+        children: (
+          <span>
+            <p>MaoMao ทำงานอย่างไร?</p>
+          </span>
+        ),
+      },
+    ],
+  },
+  childWrapper: {
+    className: 'content0-block-wrapper',
+    children: [
+      {
+        name: 'block0',
+        className: 'content0-block',
+        md: 6,
+        xs: 24,
+        children: {
+          className: 'content0-block-item',
+          children: [
+            {
+              name: 'image',
+              className: 'content0-block-icon',
+              children: InstallIcon,
+            },
+            {
+              name: 'title',
+              className: 'content0-block-title',
+              children: (
+                <span>
+                  <p>1. ติดตั้งง่าย</p>
+                </span>
+              ),
+            },
+            { 
+              name: 'content', 
+              children: (
+                <span>
+                  <p>ทีม MaoMao จัดส่ง TV Stick ให้คุณเสียบเข้ากับช่อง HDMI ของทีวีและเชื่อมต่อ WiFi ใช้เวลาเพียง 5 นาที</p>
+                </span>
+              )
+            },
+          ],
+        },
+      },
+      {
+        name: 'block1',
+        className: 'content0-block',
+        md: 6,
+        xs: 24,
+        children: {
+          className: 'content0-block-item',
+          children: [
+            {
+              name: 'image',
+              className: 'content0-block-icon',
+              children: QRCodeIcon,
+            },
+            {
+              name: 'title',
+              className: 'content0-block-title',
+              children: (
+                <span>
+                  <p>2. ลูกค้าสแกน QR Code</p>
+                </span>
+              ),
+            },
+            {
+              name: 'content',
+              children: (
+                <span>
+                  <p>ลูกค้าสแกน QR Code ที่ปรากฏบนจอทีวี เลือกรูปภาพ ใส่ข้อมูลติดต่อ และชำระเงินผ่านระบบออนไลน์</p>
+                </span>
+              )
+            },
+          ],
+        },
+      },
+      {
+        name: 'block2',
+        className: 'content0-block',
+        md: 6,
+        xs: 24,
+        children: {
+          className: 'content0-block-item',
+          children: [
+            {
+              name: 'image',
+              className: 'content0-block-icon',
+              children: AICheckIcon,
+            },
+            {
+              name: 'title',
+              className: 'content0-block-title',
+              children: (
+                <span>
+                  <p>3. AI ตรวจสอบและแสดงผล</p>
+                </span>
+              ),
+            },
+            {
+              name: 'content',
+              children: (
+                <span>
+                  <p>ระบบ AI ตรวจสอบเนื้อหาที่ไม่เหมาะสมโดยอัตโนมัติ แล้วแสดงรูปและข้อมูลติดต่อบนจอทีวีทันที</p>
+                </span>
+              )
+            },
+          ],
+        },
+      },
+      {
+        name: 'block3',
+        className: 'content0-block',
+        md: 6,
+        xs: 24,
+        children: {
+          className: 'content0-block-item',
+          children: [
+            {
+              name: 'image',
+              className: 'content0-block-icon',
+              children: RevenueIcon,
+            },
+            {
+              name: 'title',
+              className: 'content0-block-title',
+              children: (
+                <span>
+                  <p>4. รับรายได้ 50/50</p>
+                </span>
+              ),
+            },
+            {
+              name: 'content',
+              children: (
+                <span>
+                  <p>ร้านได้รับส่วนแบ่ง 50% จากทุกการแจกวาร์ป โดยโอนเงินให้ทุกสิ้นเดือนโดยอัตโนมัติ</p>
+                </span>
+              )
+            },
+          ],
+        },
+      },
+    ],
+  },
+};
+
+// Case Studies Section using existing components
+export const CaseStudies0DataSource = {
+  wrapper: { className: 'home-page-wrapper content1-wrapper case-studies-wrapper' },
+  OverPack: { className: 'home-page content1', playScale: 0.3 },
+  imgWrapper: { className: 'content1-img', md: 18, xs: 32 },
+  img: {
+    children: <Image src={Bennington} alt="Success" className="content1-img" />,
+  },
+  textWrapper: { className: 'content1-text', md: 12, xs: 32 },
+  title: {
+    className: 'content1-title',
+    children: (
+      <span>
+        <p>ร้านค้าที่ประสบความสำเร็จกับ MaoMao</p>
+      </span>
+    ),
+  },
+  content: {
+    className: 'content1-content',
+    children: (
+      <span>
+        <p>
+          <strong>บาร์บีคิว พลาซ่า สาขาทองหล่อ</strong><br />
+          รายได้จาก MaoMao เฉลี่ย: 22,000 บาท/เดือน<br />
+          จำนวนการแจกวาร์ปเฉลี่ย: 250 ครั้ง/เดือน<br />
+          เพิ่มยอดขายเครื่องดื่ม: 15%<br /><br />
+          
+          <strong>Bourbon Street Bar รัชดา</strong><br />
+          รายได้จาก MaoMao เฉลี่ย: 32,000 บาท/เดือน<br />
+          จำนวนการแจกวาร์ปเฉลี่ย: 350 ครั้ง/เดือน<br />
+          เพิ่มการติดแฮชแท็กร้านบน Social Media: 200%
+        </p>
+      </span>
+    ),
   },
 };
 
@@ -362,23 +576,23 @@ export const Pricing00DataSource = {
     children: [
       {
         name: 'title',
-        children: 'Ready to Join MaoMao?',
+        children: 'พร้อมเริ่มต้นใช้งาน MaoMao วันนี้?',
         className: 'pricing0-title',
       },
       {
         name: 'content',
         children:
-          'Get started today and join the growing community of venues on MaoMao Social Platform. Our partners typically see a 15-20% increase in customer retention and a significant boost in repeat visits.',
+          'เริ่มต้นใช้งานได้ทันทีโดยไม่มีค่าใช้จ่ายเริ่มต้น ร้านค้าสามารถกำหนดราคาได้เองตามความเหมาะสม แนะนำช่วงราคา 99-299 บาท โดยร้านจะได้รับส่วนแบ่ง 50% จากทุกรายการ ร้านที่ใช้บริการกับเรามีรายได้เสริมเฉลี่ย 20,000-30,000 บาทต่อเดือน',
         className: 'pricing0-content',
       },
-      { name: 'pricing', children: 'Starting at ฿1,900/month', className: 'pricing0-pricing' },
+      { name: 'pricing', children: 'เริ่มต้นที่ 0 บาท ไม่มีค่าติดตั้ง ไม่มีค่ารายเดือน', className: 'pricing0-pricing' },
       {
         name: 'button',
         children: {
           icon: 'shopping-cart',
           href: '/contact',
           type: 'primary',
-          children: 'Contact Us',
+          children: 'ติดต่อเรา',
         },
       },
     ],
@@ -395,7 +609,7 @@ export const Footer21DataSource = {
         name: 'group',
         children: (
           <span>
-            <a href="/faq">Terms & Conditions</a>
+            <a href="/faq">เงื่อนไขและข้อตกลง</a>
           </span>
         ),
         className: 'copyright-group',
@@ -424,22 +638,19 @@ export const Footer21DataSource = {
         name: 'facebook',
         href: 'https://facebook.com',
         className: 'links-facebook',
-        children:
-          'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItZmFjZWJvb2siPjxwYXRoIGQ9Ik0xOCAyaC0zYTUgNSAwIDAgMC01IDV2M0g3djRoM3Y4aDRWMTRoM2wxLTRoLTR2LTNhMSAxIDAgMCAxIDEtMWgzeiI+PC9wYXRoPjwvc3ZnPg==',
+        children: FacebookIcon,
       },
       {
         name: 'instagram',
         href: 'https://instagram.com',
         className: 'links-instagram',
-        children:
-          'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItaW5zdGFncmFtIj48cmVjdCB4PSIyIiB5PSIyIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHJ4PSI1IiByeT0iNSI+PC9yZWN0PjxwYXRoIGQ9Ik0xNiAxMS4zN0ExIDEgMCAwIDEgMTcgMTJ2NCAxYTEgMSAwIDAgMS0xIDFINy45YTEgMSAwIDAgMS0xLTF2LTFIOHYtNmExIDEgMCAwIDEgMS0uNjNsMi0uMzdhMSAxIDAgMCAxIDEuMTUuNTFsLjI1LjVhMSAxIDAgMCAwIC44OS41aDEuNzVhMSAxIDAgMCAxIC45Ni42OEwxNiAxMS4zN3oiPjwvcGF0aD48bGluZSB4MT0iMTcuNSIgeTE9IjYuNSIgeDI9IjE3LjUxIiB5Mj0iNi41Ij48L2xpbmU+PC9zdmc+',
+        children: InstagramIcon,
       },
       {
-        name: 'twitter',
-        href: 'https://twitter.com',
-        className: 'links-twitter',
-        children:
-          'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItdHdpdHRlciI+PHBhdGggZD0iTTIzIDNhMTAuOSAxMC45IDAgMCAxLTMuMTQgMS41MyA0LjQ4IDQuNDggMCAwIDAtNy44NiAzdjFBMTAuNjYgMTAuNjYgMCAwIDEgMyA0cy00IDkgNSAxM2ExMS42NCAxMS42NCAwIDAgMS03IDJjOSA1IDIwIDAgMjAtMTEuNWE0LjUgNC41IDAgMCAwLS4wOC0uODNBNy43MiA3LjcyIDAgMCAwIDIzIDN6Ij48L3BhdGg+PC9zdmc+',
+        name: 'line',
+        href: 'https://line.me/ti/p/@415hyizr',
+        className: 'links-line',
+        children: LineIcon,
       },
     ],
   },

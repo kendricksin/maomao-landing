@@ -1,23 +1,98 @@
 @import './variables.less';
 @content11: content11;
 
+// Overlay and text box settings
+@white-overlay-opacity: 0.5; // White overlay on entire banner
+@text-box-opacity: 0.7;      // White box behind text (higher for better readability)
+@text-box-blur: 10px;        // Soft edge blur amount
+@text-box-padding: 20px;     // Padding inside the text box
+
 .@{content11}-wrapper {
-  min-height: 480px; /* Changed from fixed height */
-  display: flex; /* Added for flexible layout */
+  min-height: 440px;
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  background: url("https://gw.alipayobjects.com/zos/rmsportal/ZsWYzLOItgeaWDSsXdZd.svg") no-repeat bottom;
+  position: relative;
+  background: url("public/banner/banner.svg") no-repeat center center;
   background-size: cover;
   margin: 0 auto;
   overflow: hidden;
-  padding: 96px 24px 64px; /* Changed to padding instead of padding-top only */
+  padding: 96px 24px 64px;
   
-  &.home-page-wrapper {
-    .title-wrapper {
-      margin-bottom: 2rem; /* Changed from fixed margin */
+  // White overlay on the entire banner
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, @white-overlay-opacity);
+    z-index: 0;
+  }
+  
+  // Make all content appear above the overlay
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+  
+  // Title wrapper enhancements
+  .title-wrapper {
+    position: relative;
+    margin-bottom: 2rem;
+    padding: @text-box-padding;
+    border-radius: 8px;
+    
+    // White transparent box with soft edges
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, @text-box-opacity);
+      border-radius: 8px;
+      filter: blur(@text-box-blur);
+      z-index: -1;
+    }
+    
+    // Solid background behind text for better readability
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, @text-box-opacity);
+      border-radius: 8px;
+      z-index: -1;
+    }
+    
+    // Bold all text in the title wrapper
+    h1, h2, p, div {
+      font-weight: bold;
+      // Add text shadow for better contrast
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    
+    // Specific style for the main title
+    .title-h1 {
+      font-weight: 700; // Extra bold for main title
+      margin-bottom: 0.5rem;
+    }
+    
+    // Content below title
+    .title-content {
+      line-height: 1.5;
+      max-width: 100%;
+      font-weight: 600; // Semibold for content text
     }
   }
   
+  // Button styling (unchanged)
   .button {
     box-shadow: 0 8px 16px #0554b7;
     background: linear-gradient(to right, #05cbff, #1e5aff) !important;
@@ -27,12 +102,13 @@
     border: 0;
     border-radius: 21px;
     color: #fff;
-    width: auto; /* Changed from fixed width */
-    min-width: 128px; /* Added min-width instead */
-    max-width: 100%; /* Ensure it doesn't overflow */
-    padding: 0 1.5rem; /* Changed to relative units */
+    width: auto;
+    min-width: 128px;
+    max-width: 100%;
+    padding: 0 1.5rem;
     display: inline-block;
     transition: transform .3s, box-shadow .3s;
+    font-weight: bold; // Make button text bold too
     
     &:hover {
       transform: translateY(-4px);
@@ -44,25 +120,24 @@
       box-shadow: 0 4px 8px #0554b7;
     }
   }
-  
-  .title-content {
-    line-height: 1.5; /* Changed from fixed line height */
-    max-width: 100%; /* Ensure text doesn't overflow */
-  }
 }
 
 /* Mobile styles */
 @media screen and (max-width: @screen-md) {
   .@{content11}-wrapper {
-    padding: 64px 16px 48px; /* Reduced padding for mobile */
-    min-height: 360px; /* Shorter minimum height for mobile */
+    padding: 64px 16px 48px;
+    min-height: 360px;
+    
+    .title-wrapper {
+      padding: @text-box-padding/1.5; // Slightly smaller padding on mobile
+    }
     
     .title-content {
-      padding: 0 1rem; /* Added padding for better readability */
+      padding: 0;
     }
     
     .button {
-      margin-top: 1.5rem; /* Extra space above button on mobile */
+      margin-top: 1.5rem;
     }
   }
 }

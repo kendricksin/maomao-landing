@@ -16,8 +16,13 @@ import {
   Feature20DataSource,
   Feature10DataSource,
   Feature00DataSource,
+  HowItWorks0DataSource, // Add new section
+  CaseStudies0DataSource, // Add new section
   Pricing00DataSource,
 } from '../components/Home/data.source';
+
+// Import styles
+import '../styles/index.less';
 
 const Home = ({ isMobile: propIsMobile }) => {
   const [isMobile, setIsMobile] = useState(propIsMobile);
@@ -70,6 +75,18 @@ const Home = ({ isMobile: propIsMobile }) => {
       id="Feature0_0"
       key="Feature0_0"
       dataSource={Feature00DataSource}
+      isMobile={isMobile}
+    />,
+    <Feature0
+      id="HowItWorks_0"
+      key="HowItWorks_0"
+      dataSource={HowItWorks0DataSource}
+      isMobile={isMobile}
+    />,
+    <Content1
+      id="CaseStudies_0"
+      key="CaseStudies_0"
+      dataSource={CaseStudies0DataSource}
       isMobile={isMobile}
     />,
     <Pricing0

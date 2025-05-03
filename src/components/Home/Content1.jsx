@@ -4,6 +4,12 @@ import TweenOne from 'rc-tween-one';
 import { Row, Col } from 'antd';
 import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
 
+/**
+ * Content1 Component
+ * 
+ * Left image, right text content component.
+ * Enhanced to support custom Image components.
+ */
 function Content1(props) {
   const { ...tagProps } = props;
   const { dataSource, isMobile } = tagProps;
@@ -38,6 +44,25 @@ function Content1(props) {
     one: prefersReducedMotion ? null : (isMobile ? mobileTweenValues : desktopTweenValues),
   };
 
+  // Enhanced image rendering that handles both string paths and React elements
+  const renderImage = () => {
+    const { img } = dataSource;
+    
+    // If img.children is a React element (our Image component), use it directly
+    if (React.isValidElement(img.children)) {
+      return img.children;
+    }
+    
+    // If img.children is a string (legacy path format), render as a regular img tag
+    if (typeof img.children === 'string') {
+      return <img src={img.children} width="100%" alt="img" />;
+    }
+    
+    // Fallback case - shouldn't happen if data source is properly configured
+    console.warn('Unknown image format in Content1');
+    return null;
+  };
+
   return (
     <div {...tagProps} {...dataSource.wrapper}>
       <OverPack {...dataSource.OverPack} component={Row}>
@@ -56,8 +81,8 @@ function Content1(props) {
             xxl: 8,
           }}
         >
-          <span {...dataSource.img}>
-            <img src={dataSource.img.children} width="100%" alt="img" />
+          <span {...dataSource.img} className="content1-image-container">
+            {renderImage()}
           </span>
         </TweenOne>
         <QueueAnim

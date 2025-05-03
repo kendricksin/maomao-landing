@@ -4,6 +4,12 @@ import TweenOne from 'rc-tween-one';
 import { Row, Col } from 'antd';
 import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
 
+/**
+ * Feature2 Component
+ * 
+ * Right image (or left on mobile), left text feature component
+ * Enhanced to support custom Image components
+ */
 function Feature2(props) {
   const { ...tagProps } = props;
   const { dataSource, isMobile } = tagProps;
@@ -39,6 +45,26 @@ function Feature2(props) {
     one: prefersReducedMotion ? null : (isMobile ? mobileTweenValues : desktopTweenValues),
   };
 
+  // Enhanced image rendering that handles both string paths and React elements
+  const renderImage = () => {
+    const { img } = dataSource;
+    
+    // If img.children is a React element (our Image component), use it directly
+    if (React.isValidElement(img.children)) {
+      return img.children;
+    }
+    
+    // If img.children is a string (legacy path format), render as a regular img tag
+    if (typeof img.children === 'string') {
+      return <img src={img.children} width="100%" alt="img" />;
+    }
+    
+    // Fallback case - shouldn't happen if data source is properly configured
+    console.warn('Unknown image format in Feature2');
+    return null;
+  };
+
+  // Image column component - reused for both mobile and desktop
   const img = (
     <TweenOne
       key="img"
@@ -55,8 +81,8 @@ function Feature2(props) {
         xxl: 10,
       }}
     >
-      <span {...dataSource.img}>
-        <img src={dataSource.img.children} width="100%" alt="img" />
+      <span {...dataSource.img} className="feature2-image-container">
+        {renderImage()}
       </span>
     </TweenOne>
   );
