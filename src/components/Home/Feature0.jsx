@@ -1,14 +1,16 @@
 import React from 'react';
 import QueueAnim from 'rc-queue-anim';
-import { Row, Col } from 'antd';
+import { Row, Col, Typography } from 'antd';
 import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
 import Image from '../Image';
+
+const { Title } = Typography;
 
 /**
  * Feature0 Component
  * 
  * Grid layout feature component with title and feature blocks
- * Enhanced to support custom Image components
+ * Enhanced to support custom Image components and improved typography
  */
 const Feature0 = (props) => {
   const { dataSource, isMobile, ...otherProps } = props;
@@ -50,11 +52,15 @@ const Feature0 = (props) => {
         return <div key={`image-${i}`}>Image Error</div>;
       }
       
-      // For title items
+      // For title items - enhanced with proper heading
       if (child.name === 'title') {
         return (
-          <div key={`title-${i}`} {...child}>
-            {typeof child.children === 'string' ? child.children : child.children}
+          <div key={`title-${i}`} className={child.className || 'content0-block-title'}>
+            {typeof child.children === 'string' ? (
+              <h3>{child.children}</h3>
+            ) : (
+              child.children
+            )}
           </div>
         );
       }
@@ -62,7 +68,7 @@ const Feature0 = (props) => {
       // For content items
       if (child.name === 'content') {
         return (
-          <div key={`content-${i}`} {...child}>
+          <div key={`content-${i}`} className={child.className || 'content0-block-content'}>
             {typeof child.children === 'string' ? child.children : child.children}
           </div>
         );
@@ -77,18 +83,35 @@ const Feature0 = (props) => {
     });
   };
   
+  // Enhanced title rendering with proper heading element
+  const renderTitle = (item, i) => {
+    if (item.name === 'title') {
+      return (
+        <Title 
+          key={i.toString()} 
+          level={2}
+          className={item.className || 'feature0-title'}
+          style={{ color: '#333', marginBottom: '16px' }}
+        >
+          {typeof item.children === 'string' ? item.children : item.children}
+        </Title>
+      );
+    }
+    
+    // For other elements in title wrapper
+    return (
+      <div key={i.toString()} {...item}>
+        {typeof item.children === 'string' ? item.children : item.children}
+      </div>
+    );
+  };
+  
   return (
     <div {...otherProps} {...wrapper}>
       <div {...page}>
         {/* Title section - centered at top */}
-        <div {...titleWrapper}>
-          {titleWrapper.children.map((item, i) => {
-            return (
-              <div key={i.toString()} {...item}>
-                {typeof item.children === 'string' ? item.children : item.children}
-              </div>
-            );
-          })}
+        <div {...titleWrapper} className={`${titleWrapper.className || ''} title-wrapper`.trim()}>
+          {titleWrapper.children.map(renderTitle)}
         </div>
         
         {/* Blocks section - row below title */}

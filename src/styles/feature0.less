@@ -1,9 +1,11 @@
+@import './variables.less';
 @content0: content0;
 
 .@{content0}-wrapper {
   min-height: 446px;
   overflow: hidden;
   padding: 64px 24px;
+  background-color: #ffffff; // Ensuring white background
 
   .@{content0} {
     height: 100%;
@@ -18,6 +20,23 @@
       width: 100%;
       margin: 0 auto 48px;
       text-align: center;
+      
+      // Enhanced title styling
+      h1, .title {
+        font-size: 32px;
+        line-height: 1.2;
+        color: @text-color-heading;
+        font-weight: 600;
+        margin-bottom: 16px;
+      }
+      
+      // Subtitle/description
+      p {
+        font-size: 18px;
+        color: @text-color-secondary;
+        max-width: 800px;
+        margin: 0 auto;
+      }
     }
 
     /* Blocks container - row layout */
@@ -60,13 +79,39 @@
       }
 
       &-title {
-        line-height: 32px;
-        margin: 10px auto;
-        font-size: 24px;
+        line-height: 1.4;
+        margin: 20px auto 16px;
+        font-size: 22px;
+        color: @text-color-heading; // Darker color for contrast
+        font-weight: 600; // Make it semi-bold
       }
       
       &-content {
         flex-grow: 1;
+        color: @text-color-secondary; // Secondary color for content
+        font-size: 16px;
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
+/* For the "How It Works" section specific styles */
+.how-it-works-wrapper {
+  background-color: #f9f9f9; // Slight gray background for section contrast
+  
+  .@{content0} {
+    > .title-wrapper {
+      h1, .title {
+        font-size: 32px; // Consistent title size
+        color: @text-color-heading; // Dark color for title
+      }
+    }
+    
+    &-block {
+      &-title {
+        color: @theme-color; // Purple color for step titles
+        font-weight: 600;
       }
     }
   }
@@ -79,12 +124,29 @@
     padding: 32px 16px;
 
     .@{content0} {
+      > .title-wrapper {
+        margin-bottom: 32px;
+        
+        h1, .title {
+          font-size: 28px; // Slightly smaller on mobile
+        }
+        
+        p {
+          font-size: 16px;
+        }
+      }
+      
       .ant-row {
         flex-direction: column;
       }
 
       &-block {
         max-width: 100%;
+        
+        &-title {
+          font-size: 20px;
+          margin: 16px auto 12px;
+        }
       }
     }
   }

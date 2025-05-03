@@ -66,10 +66,11 @@ a {
   }
 }
 
-// Content11 hero section
+// Content11 hero section - UPDATED to ensure transparency
 .content11-wrapper {
-  background: linear-gradient(to bottom, @theme-color, darken(@theme-color, 10%));
-  background-size: cover;
+  // Remove background gradient that would make it purple
+  background: url("/banner/banner.svg") no-repeat center center !important; 
+  background-size: cover !important;
   
   .title-h1, .title-content {
     color: @text-color-light;
@@ -114,7 +115,7 @@ a {
   }
 }
 
-// Feature2 
+// Feature2 - UPDATED to explicitly target only Feature2
 #Feature2_0.content2-wrapper {
   background-color: @template-bg-color-light; // Override the previous theme-color
   padding: 64px 0;

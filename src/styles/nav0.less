@@ -51,6 +51,7 @@
       background-color: transparent;
       width: 100%; /* FIX: Ensure menu has full width */
       min-width: 300px; /* FIX: Give it a minimum width */
+      list-style: none; /* ADDED: Remove bullet points */
 
       a {
         display: block;
@@ -59,7 +60,7 @@
         white-space: nowrap; /* FIX: Prevent text wrapping */
         
         &:hover {
-          color: #1890ff;
+          color: #FFE08A; /* UPDATED: Set hover color to #FFE08A */
         }
       }
     }
@@ -75,10 +76,16 @@
     }
   }
 
-  /* Fix for menu items to ensure they have width */
+  /* Fix for menu items to ensure they have width and no bullets */
   .ant-menu-item {
     min-width: 80px;
     text-align: center;
+    list-style-type: none; /* ADDED: Remove bullet points */
+  }
+
+  /* ADDED: Style for selected menu items */
+  .ant-menu-item-selected a {
+    color: #FFE08A !important; /* Make selected items gold */
   }
 
   /* Fix for the overall menu container */
@@ -126,6 +133,31 @@
   }
 }
 
+/* ADDED: Custom styles for the navigation menu */
+.custom-nav-menu.ant-menu-dark {
+  background-color: transparent;
+  
+  .ant-menu-item {
+    list-style-type: none;
+    
+    a {
+      color: white !important;
+    }
+    
+    &:hover a {
+      color: #FFE08A !important;
+    }
+  }
+  
+  .ant-menu-item-selected {
+    background-color: transparent;
+    
+    a {
+      color: #FFE08A !important;
+    }
+  }
+}
+
 @media screen and (max-width: 767px) {
   .@{header0} {
     .home-page {
@@ -158,6 +190,7 @@
       & li {
         padding: 0 24px;
         text-align: left;
+        list-style-type: none; /* ADDED: Remove bullet points in mobile view */
 
         &.ant-menu-submenu {
           padding: 0;
@@ -198,6 +231,7 @@
       height: auto;
       overflow: hidden;
       width: 100% !important; /* Force full width on mobile */
+      list-style: none !important; /* ADDED: Remove list style */
 
       .ant-menu-item-selected {
         border: none;

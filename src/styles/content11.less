@@ -13,13 +13,17 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
-  background: url("public/banner/banner.svg") no-repeat center center;
+  // Corrected path for Vite - using proper relative path from styles dir or absolute URL
+  background: url("/banner/banner.svg") no-repeat center center;
   background-size: cover;
   margin: 0 auto;
   overflow: hidden;
   padding: 96px 24px 64px;
   
-  // White overlay on the entire banner
+  // Ensure this rule overrides any other background-color settings
+  background-color: transparent !important;
+  
+  // White overlay on the entire banner - ensure high specificity
   &::after {
     content: "";
     position: absolute;
@@ -27,7 +31,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255, 255, 255, @white-overlay-opacity);
+    background-color: rgba(255, 255, 255, @white-overlay-opacity) !important;
     z-index: 0;
   }
   
@@ -92,7 +96,7 @@
     }
   }
   
-  // Button styling (unchanged)
+  // Button styling
   .button {
     box-shadow: 0 8px 16px #0554b7;
     background: linear-gradient(to right, #05cbff, #1e5aff) !important;

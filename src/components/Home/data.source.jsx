@@ -251,12 +251,15 @@ export const Feature00DataSource = {
     children: [
       {
         name: 'title',
-        children: (
-          <span>
-            <p>ประโยชน์ที่ร้านคุณจะได้รับ</p>
-          </span>
-        ),
+        children: "ประโยชน์ที่ร้านคุณจะได้รับ", // Simplified to string for proper rendering
+        className: 'feature0-title', // Add specific class name
       },
+      // Optionally add a description/subtitle if needed
+      {
+        name: 'content',
+        children: "เพิ่มรายได้ สร้างความสนุก และสร้างบรรยากาศที่แปลกใหม่ให้กับร้านของคุณ",
+        className: 'feature0-description',
+      }
     ],
   },
   childWrapper: {

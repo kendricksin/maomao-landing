@@ -79,6 +79,7 @@ const Nav0 = (props) => {
             selectedKeys={getSelectedKeys()}
             theme="dark"
             style={menuStyle}
+            className="custom-nav-menu"
           >
             {navChildren}
           </Menu>
